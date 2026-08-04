@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Launchory — Build your business with the right people.</title>
+<meta name="description" content="Launchory helps founders find, compare, and organize the designers, marketers, developers, manufacturers, photographers, and specialists needed to build their brand. Join early access." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://joinlaunchory.com/" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23191A17'/%3E%3Cg fill='%23FFFFFF'%3E%3Crect x='6.5' y='10.5' width='6.4' height='14' rx='3.2' transform='rotate(-18 9.7 17.5)'/%3E%3Crect x='16' y='5' width='6.4' height='14' rx='3.2' transform='rotate(-18 19.2 12)'/%3E%3C/g%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<meta name="theme-color" content="#191A17" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Launchory" />
+<meta property="og:url" content="https://joinlaunchory.com/" />
+<meta property="og:title" content="Launchory — Build your business with the right people." />
+<meta property="og:description" content="Join the first generation of founders and creatives building the next wave of brands. Early access is open." />
+<meta property="og:image" content="https://joinlaunchory.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Launchory — Build your business with the right people." />
+<meta name="twitter:description" content="Join the first generation of founders and creatives building the next wave of brands." />
+<meta name="twitter:image" content="https://joinlaunchory.com/og-image.png" />
+<!-- Launch config — fill these in (see DEPLOY.md). All optional; the app runs without them. -->
+<script>
+window.LAUNCHORY_CONFIG = {
+  SUPABASE_URL: "",        // e.g. https://xxxxxxxx.supabase.co
+  SUPABASE_ANON_KEY: "",   // your project's anon/public key (safe to expose; RLS protects data)
+  GA_ID: "",               // e.g. G-XXXXXXXXXX  (Google Analytics 4) — optional
+  POSTHOG_KEY: "",         // PostHog project key — optional
+  POSTHOG_HOST: "https://us.i.posthog.com"
+};
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF; --cream:#F7F5F0; --cream2:#EFEBE2; --sand:#E7E2D6;
+  --ink:#191A17; --charcoal:#3A3B37; --stone:#6C6D66; --stone2:#8E8F87;
+  --line:#E8E5DC; --line2:#DBD7CB;
+  --accent:#A9543B; --accent2:#8C4430; --accent-soft:#F3EAE4; --accent-ink:#763A28;
+  --amber:#B07E36;
+  --sh1:0 1px 2px rgba(25,26,23,.04),0 1px 3px rgba(25,26,23,.05);
+  --sh2:0 8px 24px -10px rgba(25,26,23,.13),0 2px 6px -3px rgba(25,26,23,.05);
+  --sh3:0 24px 60px -22px rgba(25,26,23,.24);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --serif:'Fraunces',Georgia,serif;
+  --r:14px;--r-lg:20px;--r-xl:26px;--r-sm:10px;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;line-height:1.55}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font-family:inherit}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+svg{display:block}
+::selection{background:var(--accent-soft);color:var(--accent-ink)}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px;border-radius:6px}
+h1,h2,h3,h4{letter-spacing:-.02em;line-height:1.08;font-weight:700}
+.h1{font-size:clamp(2.6rem,5.4vw,4.4rem);font-weight:700;letter-spacing:-.033em;line-height:1.03}
+.h2{font-size:clamp(1.85rem,3.6vw,2.95rem);font-weight:700;letter-spacing:-.026em;line-height:1.05}
+.h3{font-size:1.35rem;font-weight:700;letter-spacing:-.017em}
+.h4{font-size:1.06rem;font-weight:700;letter-spacing:-.012em}
+.serif-accent{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.005em}
+.lead{font-size:clamp(1.08rem,1.5vw,1.26rem);color:var(--charcoal);line-height:1.62;max-width:60ch;font-weight:400}
+.muted{color:var(--stone)}.muted2{color:var(--stone2)}
+.small{font-size:14px}.xs{font-size:12.5px}
+.fw5{font-weight:500}.fw6{font-weight:600}.fw7{font-weight:700}.fw8{font-weight:800}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+
+/* layout */
+.wrap{max-width:1240px;margin:0 auto;padding:0 22px}
+@media(min-width:768px){.wrap{padding:0 40px}}
+.wrap-s{max-width:720px;margin:0 auto;padding:0 22px}
+.sec{padding:72px 0}
+@media(min-width:768px){.sec{padding:108px 0}}
+.flex{display:flex}.ic{align-items:center}.is{align-items:flex-start}.ie{align-items:flex-end}
+.jb{justify-content:space-between}.jc{justify-content:center}.col{flex-direction:column}.wr{flex-wrap:wrap}
+.f1{flex:1;min-width:0}.s0{flex-shrink:0}
+.g1{gap:6px}.g2{gap:10px}.g3{gap:16px}.g4{gap:24px}.g5{gap:32px}.g6{gap:44px}
+.grid{display:grid;gap:22px}
+.tc{text-align:center}
+.mt1{margin-top:8px}.mt2{margin-top:14px}.mt3{margin-top:20px}.mt4{margin-top:28px}.mt5{margin-top:40px}.mt6{margin-top:56px}
+.mb1{margin-bottom:8px}.mb2{margin-bottom:14px}.mb3{margin-bottom:20px}.mb4{margin-bottom:28px}.mb5{margin-bottom:40px}
+.maxw{max-width:600px}.mx{margin-left:auto;margin-right:auto}
+.hairline{height:1px;background:var(--line);border:0}
+.show-lg{display:none}@media(min-width:960px){.show-lg{display:flex}}
+.hide-lg{display:flex}@media(min-width:960px){.hide-lg{display:none}}
+.show-sm{display:block}@media(min-width:720px){.show-sm{display:none}}
+.hide-sm{display:none}@media(min-width:720px){.hide-sm{display:block}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:600;font-size:15px;letter-spacing:-.006em;border-radius:10px;transition:transform .3s cubic-bezier(.2,.6,.2,1),background .3s ease,box-shadow .3s ease,border-color .3s ease,opacity .3s ease;white-space:nowrap;position:relative}
+.btn:active{transform:scale(.99)}
+.btn[disabled],.btn:disabled{background:var(--sand);color:var(--stone2);box-shadow:none;cursor:default;pointer-events:none}
+.btn-lg{height:58px;padding:0 32px;font-size:16px}
+.btn-md{height:50px;padding:0 26px}
+.btn-sm{height:40px;padding:0 18px;font-size:13.5px;border-radius:9px}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:#000;box-shadow:var(--sh2)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent2);box-shadow:var(--sh2)}
+.btn-outline{border:1.5px solid var(--line2);background:var(--paper);color:var(--ink)}
+.btn-outline:hover{border-color:var(--ink)}
+.btn-soft{background:var(--cream2);color:var(--ink)}
+.btn-soft:hover{background:var(--sand)}
+.btn-ghost{color:var(--charcoal)}
+.btn-ghost:hover{background:var(--cream)}
+.btn-block{width:100%}
+.btn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.link{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:14px;color:var(--accent);transition:.15s}
+.link:hover{gap:9px;color:var(--accent2)}
+.iconbtn{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;color:var(--charcoal);transition:.15s}
+.iconbtn:hover{background:var(--cream)}
+.savebtn{width:36px;height:36px;border-radius:999px;display:grid;place-items:center;background:rgba(255,255,255,.92);color:var(--ink);box-shadow:var(--sh1);transition:.15s;backdrop-filter:blur(4px)}
+.savebtn:hover{transform:scale(1.08)}
+.savebtn.on{background:var(--accent);color:#fff}
+.cmpbtn{width:36px;height:36px;border-radius:999px;display:grid;place-items:center;background:rgba(255,255,255,.92);color:var(--ink);box-shadow:var(--sh1);backdrop-filter:blur(4px);transition:transform .25s ease,background .25s ease}
+.cmpbtn:hover{transform:scale(1.08)}
+.cmpbtn.on{background:var(--accent);color:#fff}
+.cmptray{position:fixed;left:50%;transform:translateX(-50%);bottom:22px;z-index:95;background:var(--ink);color:#fff;border-radius:16px;box-shadow:var(--sh3);display:flex;align-items:center;gap:14px;padding:11px 12px 11px 18px;max-width:calc(100vw - 32px);animation:pop .25s}
+@media(max-width:640px){.cmptray{bottom:14px;left:16px;right:16px;transform:none;max-width:none}}
+.cmptray .av-ring{box-shadow:0 0 0 2px var(--ink)}
+.cmp-modal{max-width:min(1000px,96vw)!important}
+.cmp-grid{display:grid;gap:12px}
+.cmp-col{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column}
+.cmp-row{padding:9px 13px;border-top:1px solid var(--line);font-size:13px}
+.cmp-row .k{display:block;font-size:11px;font-weight:700;color:var(--stone2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.cmp-row.hl{background:var(--accent-soft)}
+.cmp-rec{display:inline-flex;align-items:center;gap:5px;background:var(--accent-soft);color:var(--accent-ink);border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:700}
+
+/* tags / chips / pills */
+.tag{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 11px;font-size:12px;font-weight:600;background:var(--cream2);color:var(--charcoal)}
+.tag-line{background:transparent;border:1px solid var(--line2);color:var(--stone);font-weight:500}
+.tag-accent{background:var(--accent-soft);color:var(--accent-ink)}
+.tag-ink{background:var(--ink);color:#fff}
+.tag-amber{background:#F6EEDD;color:var(--amber)}
+.status{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 11px;font-size:12px;font-weight:700}
+.status .d{width:7px;height:7px;border-radius:999px}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line2);border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:600;color:var(--charcoal);background:var(--paper);transition:.15s}
+.chip:hover{border-color:var(--ink)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.fchip{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);color:var(--accent-ink);border-radius:999px;padding:6px 8px 6px 12px;font-size:13px;font-weight:600}
+.fchip button{width:18px;height:18px;border-radius:999px;display:grid;place-items:center;background:rgba(118,58,40,.16);transition:background .15s}
+.fchip button:hover{background:rgba(118,58,40,.28)}
+
+/* cards */
+.card{background:var(--paper);border:1px solid rgba(25,26,23,.06);border-radius:var(--r-lg)}
+.pad{padding:26px}
+.hov{transition:transform .4s cubic-bezier(.2,.6,.2,1),box-shadow .4s ease,border-color .4s}
+.hov:hover{transform:translateY(-4px);box-shadow:var(--sh2);border-color:rgba(25,26,23,.08)}
+
+/* image placeholder (reliable, attractive) */
+.ph{position:relative;overflow:hidden;background:var(--g,linear-gradient(145deg,#9A968C,#4A4C50));background-size:cover;isolation:isolate;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.ph::after{content:'';position:absolute;inset:0;background-image:var(--grain);opacity:.14;mix-blend-mode:overlay;z-index:1;pointer-events:none}
+.ph .phscrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,20,15,0) 40%,rgba(20,20,15,.55));pointer-events:none}
+.ph .phtag{position:absolute;top:12px;left:12px;z-index:2;font-size:11px;font-weight:700;letter-spacing:.03em;color:#fff;background:rgba(20,20,15,.42);backdrop-filter:blur(6px);padding:5px 10px;border-radius:999px}
+.ph .phlabel{position:absolute;left:14px;bottom:12px;z-index:2;color:#fff;font-weight:700}
+.rounded{border-radius:var(--r)}.rounded-lg{border-radius:var(--r-lg)}.rounded-sm{border-radius:var(--r-sm)}
+.hovimg:hover .ph{transform:scale(1.045)}
+.mood-mosaic{display:grid;grid-template-columns:1.5fr 1fr;grid-auto-rows:118px;gap:10px}
+.mood-mosaic>*:first-child{grid-row:span 2}
+@media(min-width:560px){.mood-mosaic{grid-auto-rows:150px}}
+.swatch{width:30px;height:30px;border-radius:8px;border:1px solid rgba(0,0,0,.06)}
+.rolecard{overflow:hidden;transition:border-color .18s}
+.rolehead{width:100%;text-align:left;padding:16px 18px;display:flex;align-items:center;gap:14px;transition:background .15s}
+.rolehead:hover{background:var(--cream)}
+.expandbtn{width:30px;height:30px;border-radius:9px;background:var(--cream2);color:var(--charcoal);display:grid;place-items:center;flex-shrink:0;transition:transform .2s,background .15s}
+.rolecard.open .expandbtn{transform:rotate(45deg);background:var(--ink);color:#fff}
+.roledetail{padding:0 18px 18px 62px}
+.emptybox{border:1px solid var(--line);border-radius:var(--r-xl);padding:72px 32px;text-align:center;background:var(--cream)}
+
+/* avatar */
+.av{flex-shrink:0;border-radius:999px;display:grid;place-items:center;font-weight:700;color:#fff;overflow:hidden}
+.av-ring{box-shadow:0 0 0 2px var(--paper)}
+
+/* form */
+.field-l{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px;display:block}
+.hint{font-size:12.5px;color:var(--stone2);margin-top:6px}
+.input,.textarea,.select{width:100%;border:1.5px solid var(--line2);background:var(--paper);border-radius:12px;padding:13px 15px;font-size:15px;color:var(--ink);outline:none;transition:.15s}
+.input::placeholder,.textarea::placeholder{color:var(--stone2)}
+.input:focus,.textarea:focus,.select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.textarea{resize:none;line-height:1.5}
+.select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236C6D66' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:38px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.scrolled{border-color:var(--line)}
+.nav-in{height:66px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.03em}
+.brand-mark{width:28px;height:28px;border-radius:8px;background:var(--ink);display:grid;place-items:center;flex-shrink:0}
+.brand-mark svg{color:var(--paper)}
+.nav-link{font-size:14.5px;font-weight:600;color:var(--charcoal);padding:8px 13px;border-radius:10px;transition:.15s}
+.nav-link:hover{background:var(--cream)}
+.nav-link.on{color:var(--accent);background:var(--accent-soft)}
+
+/* segmented tabs */
+.tabs{display:inline-flex;gap:3px;background:var(--cream2);padding:4px;border-radius:13px;overflow-x:auto;scrollbar-width:none;max-width:100%}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:9px 15px;font-size:13.5px;font-weight:700;color:var(--stone);border-radius:10px;white-space:nowrap;transition:.15s}
+.tab.on{background:var(--paper);color:var(--ink);box-shadow:var(--sh1)}
+.tab:hover:not(.on){color:var(--ink)}
+
+/* modal */
+.mwrap{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}
+@media(max-width:640px){.mwrap{align-items:flex-end;padding:0}}
+.movl{position:absolute;inset:0;background:rgba(25,26,23,.5);backdrop-filter:blur(3px);animation:fade .2s}
+.modal{position:relative;width:100%;max-width:560px;background:var(--paper);border-radius:22px;box-shadow:var(--sh3);max-height:92vh;overflow-y:auto;animation:pop .25s cubic-bezier(.2,.8,.2,1)}
+@media(max-width:640px){.modal{border-radius:22px 22px 0 0;animation:sheet .28s cubic-bezier(.2,.8,.2,1)}}
+
+/* drawer */
+.drawer-ovl{position:fixed;inset:0;z-index:100;background:rgba(25,26,23,.5);backdrop-filter:blur(3px);animation:fade .2s}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(460px,94vw);background:var(--paper);z-index:101;box-shadow:var(--sh3);display:flex;flex-direction:column;animation:slidein .28s cubic-bezier(.2,.8,.2,1)}
+@media(max-width:640px){.drawer{width:100%;top:auto;bottom:0;height:88vh;border-radius:22px 22px 0 0;animation:sheet .3s cubic-bezier(.2,.8,.2,1)}}
+
+/* toast */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:130}
+@media(max-width:640px){.toast{bottom:84px}}
+.toast-in{display:flex;align-items:center;gap:9px;background:var(--ink);color:#fff;padding:12px 18px;border-radius:13px;font-size:14px;font-weight:600;box-shadow:var(--sh3);animation:pop .25s}
+
+/* footer */
+.footer{background:var(--cream);border-top:1px solid var(--line)}
+.footer .fl{color:var(--stone);transition:.15s;font-size:14.5px}
+.footer .fl:hover{color:var(--ink)}
+
+/* animations */
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+@keyframes sheet{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes slidein{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .85s cubic-bezier(.2,.6,.2,1),transform .85s cubic-bezier(.2,.6,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@keyframes mainIn{from{opacity:0}to{opacity:1}}
+#main{animation:mainIn .5s ease both}
+.riserow{opacity:0;animation:up .5s ease forwards}
+.spinner{width:34px;height:34px;border-radius:999px;border:3px solid var(--accent-soft);border-top-color:var(--accent);animation:spin .8s linear infinite}
+.btnspin{display:inline-block;width:15px;height:15px;border-radius:999px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;animation:spin .7s linear infinite;vertical-align:-2px}
+
+.icon{stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.line-clamp-1{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.line-clamp-3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.divv{width:1px;background:var(--line);align-self:stretch}
+.hscroll{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px;margin:0 -22px;padding-left:22px;padding-right:22px}
+.hscroll::-webkit-scrollbar{display:none}
+.hscroll>*{scroll-snap-align:start;flex:0 0 auto}
+@media(min-width:768px){.hscroll{margin:0;padding-left:0;padding-right:0}}
+.stickybar{position:sticky;bottom:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 22px;display:flex;gap:10px}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="drawer-root"></div>
+<div id="modal-root"></div>
+<div id="cmp-root"></div>
+<div id="toast-root"></div>
+<script>
+/* icons */
+function ico(n,s=18){const P={
+  arrow:['M4 12h15','M13 6l6 6-6 6'],arrowUR:['M7 17L17 7','M8 7h9v9'],arrowL:['M20 12H5','M11 18l-6-6 6-6'],
+  plus:['M12 5v14','M5 12h14'],minus:['M5 12h14'],check:['M20 6L9 17l-5-5'],x:['M18 6L6 18','M6 6l12 12'],
+  menu:['M3 6h18','M3 12h18','M3 18h18'],search:['M11 19a8 8 0 100-16 8 8 0 000 16z','M21 21l-3.6-3.6'],
+  star:['M12 3l2.6 6.1L21 9.7l-4.7 4.3L17.7 21 12 17.6 6.3 21l1.4-7L3 9.7l6.4-.6z'],
+  bolt:['M13 2L3 14h7l-1 8 10-12h-7z'],pin:['M12 21s7-5.7 7-11a7 7 0 10-14 0c0 5.3 7 11 7 11z','M12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z'],
+  clock:['M12 22a10 10 0 100-20 10 10 0 000 20z','M12 7v5l3 2'],wallet:['M20 7H4a2 2 0 00-2 2v8a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z','M16 12h.01'],
+  users:['M16 20v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2','M9 11a4 4 0 100-8 4 4 0 000 8z','M22 20v-2a4 4 0 00-3-3.87'],
+  heart:['M20.8 5.6a5.4 5.4 0 00-7.7 0L12 6.7l-1.1-1a5.4 5.4 0 10-7.7 7.6l8.8 8.5 8.8-8.5a5.4 5.4 0 000-7.7z'],
+  chat:['M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z'],grid:['M3 3h8v8H3z','M13 3h8v8h-8z','M13 13h8v8h-8z','M3 13h8v8H3z'],
+  sliders:['M4 21v-7','M4 10V3','M12 21v-9','M12 8V3','M20 21v-5','M20 12V3','M1 14h6','M9 8h6','M17 16h6'],
+  sparkles:['M12 3l1.6 4L18 8.5l-4.4 1.5L12 14l-1.6-4L6 8.5 10.4 7z','M19 14l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z'],
+  briefcase:['M20 7H4a2 2 0 00-2 2v9a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z','M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16'],
+  layers:['M12 2l9 5-9 5-9-5z','M3 12l9 5 9-5','M3 17l9 5 9-5'],trend:['M22 7l-8.5 8.5-5-5L2 17','M16 7h6v6'],
+  send:['M22 2L11 13','M22 2l-7 20-4-9-9-4z'],dollar:['M12 1v22','M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6'],
+  globe:['M12 22a10 10 0 100-20 10 10 0 000 20z','M2 12h20','M12 2a15 15 0 010 20','M12 2a15 15 0 000 20'],
+  scale:['M12 3v18','M6 8h12','M6 8l-3 7a3 3 0 006 0z','M18 8l-3 7a3 3 0 006 0z','M8 21h8'],
+  badge:['M12 15a4 4 0 100-8 4 4 0 000 8z','M12 2l2.4 2.4L18 4l.6 3.6L22 9l-2 3 2 3-3.4 1.4L18 20l-3.6-.4L12 22l-2.4-2.6L6 20l-.6-3.6L2 15l2-3-2-3 3.4-1.4L6 4l3.6.4z'],box:['M21 8l-9-5-9 5 9 5 9-5z','M3 8v8l9 5 9-5V8','M12 13v8']};
+  const p=(P[n]||P.arrow).map(d=>`<path d="${d}"/>`).join('');
+  return `<svg class="icon" width="${s}" height="${s}" viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;}
+
+/* ===== LOGO MARK =====
+   Two rounded pieces, the second lifted forward — two parts coming together,
+   forward momentum. Uses currentColor so it works in ink / white / terracotta / mono. */
+function logoMark(s=16){s=s||16;return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="4" y="8" width="6.4" height="13.5" rx="3.2" transform="rotate(-18 7.2 14.75)"/><rect x="13.6" y="2.5" width="6.4" height="13.5" rx="3.2" transform="rotate(-18 16.8 9.25)"/></svg>`;}
+
+/* ===== IMAGE PLACEHOLDER =====
+   Fully self-contained + deterministic. No network, no random-per-reload images.
+   Each seed produces a stable, art-directed tonal composition for its brand world. */
+/* Category palettes tuned to read as coherent brand worlds — muted, editorial,
+   never neon. [light, deep] anchor each world; imagery is composed from them. */
+const TONES={fashion:['#A2937F','#332E28'],beauty:['#C6A79D','#544641'],food:['#9EA97F','#3C4832'],
+  lifestyle:['#A79C8C','#3E3A35'],wellness:['#93A793','#37473B'],music:['#828C89','#282E2D'],
+  neutral:['#9E9789','#454440'],deep:['#5E6E62','#28302B'],warm:['#B6A588','#544A3B'],cool:['#8C97A1','#373D44']};
+function toneCss(t){const c=TONES[t]||TONES.neutral;return `linear-gradient(145deg,${c[0]},${c[1]})`;}
+/* deterministic 0..1 generator seeded by an integer */
+function seedRnd(seed){let n=((seed||1)*2654435761)%2147483647;if(n<=0)n+=2147483646;return()=>{n=(n*48271)%2147483647;return n/2147483647;};}
+/* hex mix — used to derive lighter/deeper variants inside the same hue family */
+function _hx(h){h=h.replace('#','');return [0,2,4].map(i=>parseInt(h.substr(i,2),16));}
+function mixHex(a,bb,t){const A=_hx(a),B=_hx(bb);return '#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('');}
+/* Compose a stable, studio-lit backdrop: a soft key light, a quieter fill,
+   a grounded shadow, an edge vignette, over a directional tonal sweep.
+   Reads as an art-directed color study rather than a flat gradient. */
+function phBg(seed,tone,shift){const t0=TONES[tone]||TONES.neutral;let c=[t0[0],t0[1]];shift=shift||0;
+  if(shift>0){c=[mixHex(t0[0],'#F5F2EB',.30),mixHex(t0[1],t0[0],.28)];}
+  else if(shift<0){c=[mixHex(t0[0],t0[1],.42),mixHex(t0[1],'#141410',.32)];}
+  const r=seedRnd(seed);
+  const key=()=>{const x=18+Math.round(r()*30),y=12+Math.round(r()*26),sz=48+Math.round(r()*22);
+    return `radial-gradient(${sz}% ${sz}% at ${x}% ${y}%, rgba(255,255,255,${(.16+r()*.12).toFixed(2)}) 0%, rgba(255,255,255,0) 60%)`;};
+  const fill=()=>{const x=58+Math.round(r()*36),y=44+Math.round(r()*40),sz=40+Math.round(r()*22);
+    return `radial-gradient(${sz}% ${sz}% at ${x}% ${y}%, rgba(255,255,255,${(.05+r()*.06).toFixed(2)}) 0%, rgba(255,255,255,0) 58%)`;};
+  const ground=()=>{const x=30+Math.round(r()*44);
+    return `radial-gradient(78% 62% at ${x}% 118%, rgba(15,15,11,.17) 0%, rgba(15,15,11,0) 62%)`;};
+  const vignette='radial-gradient(122% 122% at 50% 38%, rgba(15,15,11,0) 66%, rgba(15,15,11,.1) 100%)';
+  const angle=120+Math.round(r()*66);
+  return `${key()},${fill()},${ground()},${vignette},linear-gradient(${angle}deg,${c[0]} 0%,${c[1]} 100%)`;}
+function ph(seed,o){o=o||{};const bg=phBg(seed,o.tone,o.shift||0);
+  return `<div class="ph ${o.cls||''}" role="img" aria-label="${esc(o.alt||o.tag||'Visual')}" style="${o.ratio?`aspect-ratio:${o.ratio};`:''}${o.style||''};--g:${bg}">
+    ${o.scrim?'<span class="phscrim"></span>':''}
+    ${o.tag?`<span class="phtag">${o.tag}</span>`:''}${o.label?`<span class="phlabel">${o.label}</span>`:''}</div>`;}
+function av(name,seed,size,ring){size=size||38;const i=name.split(' ').map(w=>w[0]).slice(0,2).join('');
+  const tone=toneCss(['deep','warm','cool','neutral'][seed%4]);
+  return `<div class="av ${ring?'av-ring':''}" style="width:${size}px;height:${size}px;font-size:${size*.36}px;background:${tone}" aria-hidden="true">${i}</div>`;}
+
+/* ===== DATA ===== */
+const ROLE={
+ 'Brand Designer':{d:'Creates your identity, logo, typography, and visual system.',p:'$1.5k–$5k'},
+ 'Graphic Designer':{d:'Graphics, layouts, and marketing assets.',p:'$40–$90/hr'},
+ 'Packaging Designer':{d:'Designs product packaging and the unboxing experience.',p:'$1k–$4k'},
+ 'Fashion Designer':{d:'Garment design, patterns, and fit.',p:'$2k–$8k'},
+ 'Pattern Maker':{d:'Turns designs into production-ready patterns.',p:'$35–$70/hr'},
+ 'Photographer':{d:'Campaign, product, and lookbook imagery.',p:'$800–$2k/day'},
+ 'Product Photographer':{d:'Clean product and campaign imagery.',p:'$600–$1.5k/day'},
+ 'Videographer':{d:'Campaign films and short-form video.',p:'$900–$2.5k/day'},
+ 'Stylist':{d:'Styling for shoots and campaigns.',p:'$500–$1.2k/day'},
+ 'Social Media Manager':{d:'Builds content, community, and social growth.',p:'$1k–$3k/mo'},
+ 'Marketing Specialist':{d:'Plans the launch and customer acquisition.',p:'$1.5k–$5k'},
+ 'Influencer Marketing Specialist':{d:'Creator partnerships and product seeding.',p:'$1k–$3k'},
+ 'Web Designer':{d:'Designs your website and store.',p:'$1.5k–$5k'},
+ 'Shopify Developer':{d:'Builds your online store.',p:'$2k–$6k'},
+ 'Developer':{d:'Web, app, and product engineering.',p:'$70–$150/hr'},
+ 'Food Scientist':{d:'Develops and prepares the product for safe production.',p:'$80–$150/hr'},
+ 'Cosmetic Chemist':{d:'Formulates your product to spec.',p:'$90–$160/hr'},
+ 'Product Developer':{d:'Takes the product from concept to sample.',p:'$60–$120/hr'},
+ 'Manufacturer':{d:'Sampling and production at scale.',p:'By quote'},
+ 'Supply Chain Specialist':{d:'Sourcing, logistics, and fulfillment.',p:'$70–$130/hr'},
+ 'Retail Consultant':{d:'Wholesale and retail strategy.',p:'$100–$180/hr'},
+ 'Merchandising Consultant':{d:'Range planning and merchandising.',p:'$90–$150/hr'},
+ 'Copywriter':{d:'Brand voice, names, and copy.',p:'$50–$110/hr'},
+ 'Creative Director':{d:'Owns the overall creative vision.',p:'$100–$200/hr'},
+ 'Product Designer':{d:'Digital product and app design.',p:'$70–$140/hr'},
+ 'Accountant':{d:'Finance setup, taxes, and bookkeeping.',p:'$60–$120/hr'},
+ 'Legal Consultant':{d:'Trademarks, contracts, and compliance.',p:'$120–$250/hr'},
+ 'Social Media Creator':{d:'Creates on-brand short-form content and grows community.',p:'$800–$2.5k/mo'},
+};
+const INDUSTRIES=[
+ {id:'fashion',name:'Fashion',tone:'fashion',seed:11,desc:'Apparel, accessories & the world around them.',
+  team:['Fashion Designer','Brand Designer','Graphic Designer','Product Photographer','Social Media Manager','Marketing Specialist','Shopify Developer','Manufacturer']},
+ {id:'beauty',name:'Beauty',tone:'beauty',seed:12,desc:'Skincare, cosmetics & personal care.',
+  team:['Brand Designer','Packaging Designer','Cosmetic Chemist','Product Photographer','Social Media Manager','Marketing Specialist','Shopify Developer']},
+ {id:'food',name:'Food & Beverage',tone:'food',seed:13,desc:'Food, drinks & everything consumable.',
+  team:['Brand Designer','Packaging Designer','Food Scientist','Product Photographer','Social Media Creator','Shopify Developer','Marketing Specialist']},
+ {id:'lifestyle',name:'Lifestyle',tone:'lifestyle',seed:14,desc:'Objects, spaces & the way people live.',
+  team:['Brand Designer','Creative Director','Product Photographer','Social Media Manager','Marketing Specialist','Shopify Developer','Copywriter']},
+ {id:'wellness',name:'Wellness',tone:'wellness',seed:15,desc:'Fitness, mindfulness & considered living.',
+  team:['Brand Designer','Product Designer','Product Photographer','Social Media Manager','Marketing Specialist','Copywriter','Shopify Developer']},
+ {id:'music',name:'Music',tone:'music',seed:16,desc:'Artists, labels & audio products.',
+  team:['Creative Director','Brand Designer','Videographer','Photographer','Social Media Manager','Marketing Specialist','Web Designer']},
+ {id:'other',name:'Other',tone:'neutral',seed:17,desc:'Something else entirely — we\'ll help.',
+  team:['Brand Designer','Product Photographer','Social Media Manager','Marketing Specialist','Web Designer','Copywriter']},
+];
+const indById=id=>INDUSTRIES.find(i=>i.id===id)||INDUSTRIES[0];
+
+const CREATIVES=[
+ {id:'alex-morgan',n:'Alex Morgan',role:'Brand Designer',tone:'fashion',seed:31,loc:'Brooklyn, NY',rate:'$85/hr',avail:'Available now',at:'now',rating:'4.9',rev:47,exp:'Senior',ind:['Fashion','Beauty','Lifestyle'],
+  skills:['Brand Identity','Logo & Type','Packaging','Art Direction','Figma'],
+  bio:"I build the identity of a brand — the mark, the type, the whole system. Eight years with early consumer brands, three of which went on to raise.",
+  services:['Brand identity system','Logo & wordmark','Packaging design','Brand guidelines'],work:[311,312,313,314,315,316]},
+ {id:'devon-lee',n:'Devon Lee',role:'Product Photographer',tone:'food',seed:32,loc:'Los Angeles, CA',rate:'$1.1k/day',avail:'Available now',at:'now',rating:'4.8',rev:33,exp:'Senior',ind:['Fashion','Beauty','Food & Beverage'],
+  skills:['Product Photography','Lookbooks','Studio Lighting','Retouching'],
+  bio:"Product and campaign photographer making young brands look established. Clean e-commerce, editorial lookbooks, social-ready imagery.",
+  services:['E-commerce product set','Campaign shoot','Lookbook','Retouching'],work:[321,322,323,324,325,326]},
+ {id:'camila-rossi',n:'Camila Rossi',role:'Social Media Manager',tone:'beauty',seed:33,loc:'Miami, FL',rate:'$2k/mo',avail:'Open to short-term',at:'short',rating:'4.9',rev:52,exp:'Senior',ind:['Beauty','Fashion','Wellness'],
+  skills:['Content Strategy','TikTok & Reels','Community','Analytics'],
+  bio:"I grow young brands from zero — voice, content, community. Three brands past 100k with organic content, not ad spend.",
+  services:['Monthly content','Launch campaign','Community management','Creator seeding'],work:[331,332,333,334,335,336]},
+ {id:'marcus-bell',n:'Marcus Bell',role:'Shopify Developer',tone:'cool',seed:34,loc:'Austin, TX',rate:'$95/hr',avail:'Available in a week',at:'week',rating:'5.0',rev:29,exp:'Senior',ind:['Fashion','Lifestyle','Food & Beverage'],
+  skills:['Shopify','Webflow','React','Landing Pages','SEO'],
+  bio:"I build fast storefronts that convert. From Figma to a live, polished store your customers trust.",
+  services:['Shopify store build','Landing page','Store migration','Speed & SEO'],work:[341,342,343,344,345,346]},
+ {id:'yuki-tanaka',n:'Yuki Tanaka',role:'Packaging Designer',tone:'warm',seed:35,loc:'Seattle, WA',rate:'$100/hr',avail:'Available evenings',at:'eve',rating:'4.9',rev:38,exp:'Senior',ind:['Beauty','Food & Beverage','Wellness'],
+  skills:['Packaging','Product Design','Unboxing','Sustainable Materials'],
+  bio:"From the product in your hand to the box it arrives in. Packaging that feels considered and inevitable.",
+  services:['Packaging system','Unboxing design','Dieline & print-ready','Sustainable spec'],work:[351,352,353,354,355,356]},
+ {id:'grace-kim',n:'Grace Kim',role:'Copywriter',tone:'warm',seed:36,loc:'Chicago, IL',rate:'$70/hr',avail:'Consulting part-time',at:'part',rating:'4.8',rev:41,exp:'Mid',ind:['Fashion','Beauty','Lifestyle'],
+  skills:['Brand Voice','Naming','Website Copy','Email'],
+  bio:"Words that make a brand sound like a person worth knowing. I name things, write launches, and find the line that sticks.",
+  services:['Brand naming','Website copy','Launch emails','Tagline & voice'],work:[361,362,363,364,365,366]},
+ {id:'noah-reyes',n:'Noah Reyes',role:'Marketing Specialist',tone:'deep',seed:37,loc:'New York, NY',rate:'$90/hr',avail:'Available for one project',at:'oneproj',rating:'4.9',rev:36,exp:'Senior',ind:['Food & Beverage','Wellness','Beauty'],
+  skills:['Launch Strategy','Paid Ads','Email & SMS','Retention'],
+  bio:"I help new brands find their first 10,000 customers — launch strategy, paid growth, and systems to keep people coming back.",
+  services:['Go-to-market plan','Paid acquisition','Email & SMS setup','Retention'],work:[371,372,373,374,375,376]},
+ {id:'ivy-chen',n:'Ivy Chen',role:'Food Scientist',tone:'food',seed:38,loc:'Portland, OR',rate:'$120/hr',avail:'Available now',at:'now',rating:'5.0',rev:22,exp:'Expert',ind:['Food & Beverage','Wellness'],
+  skills:['Formulation','Recipe Dev','Shelf Life','Co-packing'],
+  bio:"I turn a great taste into a real, shippable product — recipe development, formulation, and getting you production-ready.",
+  services:['Recipe development','Formulation','Shelf-life testing','Co-packer intro'],work:[381,382,383,384,385,386]},
+ {id:'theo-adeyemi',n:'Theo Adeyemi',role:'Brand Designer',tone:'lifestyle',seed:39,loc:'London, UK',rate:'$75/hr',avail:'Available in a week',at:'week',rating:'4.7',rev:19,exp:'Mid',ind:['Lifestyle','Music','Fashion'],
+  skills:['Identity','Type','Motion','Art Direction'],
+  bio:"Recent grad with a sharp eye and a lot of energy. I like building brands that feel current without chasing trends.",
+  services:['Brand identity','Motion assets','Social kit','Guidelines'],work:[391,392,393,394,395,396]},
+ {id:'sara-novak',n:'Sara Novak',role:'Photographer',tone:'fashion',seed:40,loc:'Los Angeles, CA',rate:'$1.4k/day',avail:'Available for advisory work',at:'adv',rating:'4.9',rev:61,exp:'Expert',ind:['Fashion','Beauty','Lifestyle'],
+  skills:['Campaign','Editorial','Direction','Casting'],
+  bio:"Twenty years shooting campaigns. Now I take on a few brands a season and mentor younger teams.",
+  services:['Campaign direction','Editorial shoot','Casting','On-set direction'],work:[401,402,403,404,405,406]},
+ {id:'priya-nair',n:'Priya Nair',role:'Cosmetic Chemist',tone:'beauty',seed:41,loc:'Toronto, CA',rate:'$140/hr',avail:'Available now',at:'now',rating:'5.0',rev:14,exp:'Expert',ind:['Beauty','Wellness'],
+  skills:['Formulation','Stability','Compliance','Claims'],
+  bio:"Chemist by training. I formulate skincare and color that performs and passes every test.",
+  services:['Formulation','Stability testing','Regulatory','Sampling'],work:[411,412,413,414,415,416]},
+ {id:'diego-santos',n:'Diego Santos',role:'Videographer',tone:'music',seed:42,loc:'Austin, TX',rate:'$1.2k/day',avail:'Open to short-term',at:'short',rating:'4.8',rev:27,exp:'Mid',ind:['Music','Fashion','Lifestyle'],
+  skills:['Short-form','Campaign Film','Editing','Direction'],
+  bio:"I make films that people finish watching. Campaign pieces, launch films, and social edits that travel.",
+  services:['Launch film','Social edits','Campaign video','Direction'],work:[421,422,423,424,425,426]},
+ {id:'hana-mori',n:'Hana Mori',role:'Web Designer',tone:'cool',seed:43,loc:'Remote',rate:'$80/hr',avail:'Available evenings',at:'eve',rating:'4.8',rev:31,exp:'Mid',ind:['Lifestyle','Wellness','Beauty'],
+  skills:['UI Design','Webflow','Prototyping','Design Systems'],
+  bio:"Clean, calm websites that make products easy to understand and buy. I design and build in Webflow.",
+  services:['Website design','Webflow build','Design system','Prototype'],work:[431,432,433,434,435,436]},
+ {id:'omar-haddad',n:'Omar Haddad',role:'Manufacturer',tone:'deep',seed:44,loc:'Los Angeles, CA',rate:'By quote',avail:'Available immediately',at:'now',rating:'4.7',rev:18,exp:'Expert',ind:['Fashion','Lifestyle'],
+  skills:['Sampling','Small-batch','Sourcing','QC'],
+  bio:"Small-batch apparel production, done right. I help new labels get from sample to first run without the horror stories.",
+  services:['Sampling','Production run','Sourcing','Quality control'],work:[441,442,443,444,445,446]},
+ {id:'lena-frost',n:'Lena Frost',role:'Retail Consultant',tone:'warm',seed:45,loc:'New York, NY',rate:'$160/hr',avail:'Available for advisory work',at:'adv',rating:'5.0',rev:12,exp:'Expert',ind:['Fashion','Beauty','Lifestyle'],
+  skills:['Wholesale','Retail Strategy','Buying','Growth'],
+  bio:"Former head of buying, now advising founders on wholesale and retail. I open the doors I used to guard.",
+  services:['Retail strategy','Wholesale intros','Range planning','Advisory'],work:[451,452,453,454,455,456]},
+ {id:'kai-brooks',n:'Kai Brooks',role:'Graphic Designer',tone:'music',seed:46,loc:'Remote',rate:'$55/hr',avail:'Available now',at:'now',rating:'4.6',rev:15,exp:'Junior',ind:['Music','Fashion','Lifestyle'],
+  skills:['Layout','Merch','Social','Type'],
+  bio:"Design grad who lives on graphics — merch, covers, social. Fast, flexible, and hungry for good projects.",
+  services:['Merch graphics','Social templates','Cover art','Layout'],work:[461,462,463,464,465,466]},
+];
+/* Two more people — a campus content creator (local, in-person) and a brand
+   lawyer — so Launchory clearly serves more than just creatives. */
+CREATIVES.push(
+ {id:'mia-delgado',n:'Mia Delgado',role:'Social Media Creator',tone:'lifestyle',seed:47,loc:'Santa Barbara, CA',rate:'$1.4k/mo',avail:'Open to short-term',at:'short',rating:'4.9',rev:24,exp:'Mid',ind:['Food & Beverage','Beauty','Lifestyle'],
+  arr:'In person',travel:'Within Santa Barbara County',campus:'UC Santa Barbara',
+  social:{followers:'38k',eng:'6.2%',platforms:['TikTok','Instagram']},
+  skills:['Short-form Video','Campus Marketing','UGC','Community','Product Seeding'],
+  bio:"I make college-lifestyle content that actually converts. Based in Santa Barbara with real reach on campus — I can shoot in person, run seeding, and turn a launch into a moment students care about.",
+  services:['Monthly content','Campus launch event','UGC package','Creator seeding'],work:[471,472,473,474,475,476]},
+ {id:'elena-park',n:'Elena Park',role:'Legal Consultant',tone:'cool',seed:48,loc:'Remote (US)',rate:'$180/hr',avail:'Available for advisory work',at:'adv',rating:'5.0',rev:16,exp:'Expert',ind:['Beauty','Food & Beverage','Fashion'],
+  arr:'Remote',
+  creds:['CA Bar #284102','Trademark & IP','FDA labeling'],
+  skills:['Trademarks','Contracts','Compliance','Entity Setup'],
+  bio:"Startup counsel for consumer brands. I handle the unglamorous but essential parts — trademarks, contracts, labeling, and getting your company set up so you can launch without surprises.",
+  services:['Trademark filing','Founder & contractor agreements','Label compliance review','Entity formation'],work:[481,482,483,484,485,486]});
+
+/* Work arrangement + relevant extra fields, merged onto existing talent.
+   arr: Remote | Hybrid | In person | Flexible. Extra fields render only when present. */
+const TALENT_EXTRA={
+ 'alex-morgan':{arr:'Remote',travel:'Travels for kickoffs'},
+ 'devon-lee':{arr:'In person',travel:'LA + travels for shoots'},
+ 'camila-rossi':{arr:'Remote',social:{followers:'21k',eng:'4.8%',platforms:['Instagram','TikTok']}},
+ 'marcus-bell':{arr:'Remote'},
+ 'yuki-tanaka':{arr:'Hybrid'},
+ 'grace-kim':{arr:'Remote'},
+ 'noah-reyes':{arr:'Hybrid'},
+ 'ivy-chen':{arr:'Hybrid',creds:['Food safety (HACCP)','Co-packing network']},
+ 'theo-adeyemi':{arr:'Remote'},
+ 'sara-novak':{arr:'In person',travel:'Travels worldwide'},
+ 'priya-nair':{arr:'Hybrid',creds:['Cosmetic chemistry','Stability & claims']},
+ 'diego-santos':{arr:'In person',travel:'Travels for shoots'},
+ 'hana-mori':{arr:'Remote'},
+ 'omar-haddad':{arr:'In person',moq:'50 units / style',capabilities:['Cut & sew','Knitwear','Small-batch runs']},
+ 'lena-frost':{arr:'Hybrid'},
+ 'kai-brooks':{arr:'Remote'},
+};
+CREATIVES.forEach(c=>{if(TALENT_EXTRA[c.id])Object.assign(c,TALENT_EXTRA[c.id]);if(!c.arr)c.arr='Flexible';});
+function arrIcon(a){return {'Remote':'globe','Hybrid':'grid','In person':'pin','Flexible':'clock'}[a]||'pin';}
+/* Understated, deterministic trust signals — derived from existing data, never loud. */
+const _CLIENTS=['Aritzia','Glossier','Notion','Away','Oatly','Ghia','Parachute','Hims','Rhode','Otherland','Bychari','Caraway','Topicals','Jenni Kayne','Snif','Graza'];
+function isVerified(c){return parseFloat(c.rating)>=4.8;}
+function respondsIn(c){return ['within the hour','in a few hours','within a day'][c.seed%3];}
+function repeatPct(c){return 74+(c.seed*7)%22;}
+function projectsDone(c){return c.rev;}
+function clientsFor(c){const r=seedRnd(c.seed+31);const out=[];while(out.length<3){const n=_CLIENTS[Math.floor(r()*_CLIENTS.length)];if(!out.includes(n))out.push(n);}return out;}
+function verifiedMark(s){s=s||13;return `<span title="Verified" aria-label="Verified" style="display:inline-grid;place-items:center;width:${s+5}px;height:${s+5}px;border-radius:999px;background:var(--accent-soft);color:var(--accent);flex-shrink:0">${ico('check',s-2)}</span>`;}
+/* Quiet editorial illustration for empty states — stacked cards with a saved mark. */
+function emptyArt(){return `<div style="width:186px;max-width:70%;margin:0 auto"><svg viewBox="0 0 200 128" fill="none" style="width:100%" aria-hidden="true">
+  <rect x="50" y="30" width="100" height="80" rx="14" fill="var(--cream2)"/>
+  <rect x="62" y="18" width="100" height="80" rx="14" fill="var(--paper)" stroke="var(--line2)"/>
+  <rect x="74" y="32" width="44" height="32" rx="8" fill="var(--sand)"/>
+  <line x1="74" y1="76" x2="150" y2="76" stroke="var(--line2)" stroke-width="2.4" stroke-linecap="round"/>
+  <line x1="74" y1="85" x2="130" y2="85" stroke="var(--line)" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="150" cy="30" r="15" fill="var(--accent-soft)"/>
+  <path d="M150 37s-7-4.4-7-8.6a3.7 3.7 0 016.9-1.9 3.7 3.7 0 016.9 1.9c0 4.2-6.8 8.6-6.8 8.6z" fill="var(--accent)"/>
+</svg></div>`;}
+const cById=id=>CREATIVES.find(c=>c.id===id)||CREATIVES[0];
+function matchesForRole(role){
+  let m=CREATIVES.filter(c=>c.role===role);
+  if(m.length<2){const k=role.split(' ')[0];m=m.concat(CREATIVES.filter(c=>c.role!==role&&c.role.includes(k)));}
+  if(m.length<2)m=m.concat(CREATIVES.filter(c=>!m.includes(c)).slice(0,3));
+  return m.slice(0,4);
+}
+
+const BRANDS=[
+ {id:'altitude',n:'Altitude',ind:'Fashion',tone:'fashion',seed:101,stage:'Pre-launch',one:'A size-inclusive fashion label for the way this generation actually dresses.',
+  founder:{n:'Kennedy Owen',r:'Founder',seed:1010},interested:24,budget:'$4k–$9k',timeline:'First drop in 3 months',posted:'2 days ago',
+  gallery:[1011,1012,1013],
+  vision:"A tight first drop of eight pieces, a distinct visual identity, and a community that feels like insiders from day one. Honest fabric, fair prices, no filler.",
+  opp:"Young shoppers are tired of fast fashion but priced out of quality. Altitude sits in the gap: considered pieces at a fair price, sold direct.",
+  roles:['Fashion Designer','Brand Designer','Product Photographer','Social Media Manager','Marketing Specialist'],
+  filled:{'Brand Designer':['Alex Morgan',31],'Product Photographer':['Devon Lee',32]}},
+ {id:'kettle',n:'Kettle & Koto',ind:'Food & Beverage',tone:'food',seed:102,stage:'Concept',one:'A premium ceremonial matcha brand for everyday ritual.',
+  founder:{n:'Mika Tan',r:'Founder',seed:1020},interested:16,budget:'$6k–$14k',timeline:'4 months',posted:'1 day ago',
+  gallery:[1021,1022,1023],
+  vision:"Ceremonial-grade matcha with beautiful packaging, a simple ritual, and content that teaches people to slow down. Sourced directly, priced fairly.",
+  opp:"Matcha is booming but most brands are either cheap and bitter or luxury and intimidating. Kettle & Koto is the approachable premium middle.",
+  roles:['Brand Designer','Packaging Designer','Food Scientist','Product Photographer','Social Media Manager','Shopify Developer','Marketing Specialist'],
+  filled:{'Brand Designer':['Alex Morgan',31]}},
+ {id:'halo',n:'Halo Studies',ind:'Beauty',tone:'beauty',seed:103,stage:'Launching',one:'Clean, playful beauty designed to be discovered, not advertised.',
+  founder:{n:'Sofia Ramirez',r:'Founder',seed:1030},interested:31,budget:'$6k–$15k',timeline:'4 months',posted:'1 day ago',
+  gallery:[1031,1032,1033],
+  vision:"A three-product hero line — lip, skin, glow — with packaging you leave on the counter and a social presence people actually follow.",
+  opp:"Gen-Z discovers beauty on TikTok, not shelves. Halo is built content-first, with products designed to be filmed.",
+  roles:['Brand Designer','Packaging Designer','Product Photographer','Social Media Manager','Marketing Specialist'],
+  filled:{'Brand Designer':['Alex Morgan',31],'Product Photographer':['Devon Lee',32],'Social Media Manager':['Camila Rossi',33]}},
+ {id:'offgrid',n:'Off-Grid',ind:'Fashion',tone:'music',seed:104,stage:'Concept',one:'Drop-based streetwear with graphics worth collecting.',
+  founder:{n:'Andre Willis',r:'Founder',seed:1040},interested:12,budget:'$3k–$7k',timeline:'2 months',posted:'3 days ago',
+  gallery:[1041,1042,1043],
+  vision:"Limited drops, strong graphics, and a community that treats each release like an event. Small, sharp, and yours if you know.",
+  opp:"Streetwear fans crave scarcity and story. Off-Grid builds hype through graphics and a tight community, not ad spend.",
+  roles:['Graphic Designer','Product Photographer','Social Media Manager'],filled:{}},
+ {id:'lowercase',n:'Lowercase',ind:'Music',tone:'music',seed:105,stage:'Pre-launch',one:'A home for independent artists to be discovered and paid fairly.',
+  founder:{n:'Jordan Blake',r:'Founder',seed:1050},interested:27,budget:'$10k–$25k',timeline:'6 months',posted:'4 days ago',
+  gallery:[1051,1052,1053],
+  vision:"A mobile-first place where artists share work, grow an audience, and earn directly from fans — a product that feels calm, not addictive.",
+  opp:"Streaming pays artists pennies and flattens discovery. Lowercase puts the relationship — and the money — back with fans.",
+  roles:['Creative Director','Developer','Web Designer','Marketing Specialist'],filled:{'Developer':['Marcus Bell',34]}},
+ {id:'meridian',n:'Meridian',ind:'Beauty',tone:'beauty',seed:106,stage:'Pre-launch',one:'Three skincare products, done exceptionally well.',
+  founder:{n:'Dr. Elin Vasquez',r:'Founder',seed:1060},interested:15,budget:'$5k–$11k',timeline:'3 months',posted:'6 days ago',
+  gallery:[1061,1062,1063],
+  vision:"A calm, science-led line with a clean storefront and honest, ingredient-first storytelling. No noise, no false promises.",
+  opp:"Skincare is overwhelming and full of hype. Meridian wins with restraint: three products, real science, plain language.",
+  roles:['Brand Designer','Shopify Developer','Product Photographer','Copywriter'],filled:{'Shopify Developer':['Marcus Bell',34]}},
+ {id:'slowhours',n:'Slow Hours',ind:'Food & Beverage',tone:'warm',seed:107,stage:'Concept',one:'Small-batch coffee with a story behind every bag.',
+  founder:{n:"Liam O'Connor",r:'Founder',seed:1070},interested:9,budget:'$4k–$9k',timeline:'3 months',posted:'1 week ago',
+  gallery:[1071,1072,1073],
+  vision:"A subscription with packaging worth keeping, a simple ritual to sign up, and content that makes people care where their coffee comes from.",
+  opp:"Coffee drinkers want provenance and craft but hate friction. Slow Hours makes specialty coffee effortless and beautiful.",
+  roles:['Brand Designer','Packaging Designer','Product Photographer','Marketing Specialist','Shopify Developer'],filled:{}},
+ {id:'stillroom',n:'Stillroom',ind:'Wellness',tone:'wellness',seed:108,stage:'Concept',one:'Considered wellness for people who dislike wellness apps.',
+  founder:{n:'Nina Petrova',r:'Founder',seed:1080},interested:11,budget:'$8k–$18k',timeline:'5 months',posted:'5 days ago',
+  gallery:[1081,1082,1083],
+  vision:"A quiet product that helps people build small, consistent rituals — a brand that feels like a deep breath, not a scoreboard.",
+  opp:"Wellness apps burn people out with streaks and guilt. Stillroom is the calm alternative that people actually keep.",
+  roles:['Brand Designer','Product Designer','Product Photographer','Marketing Specialist'],filled:{'Product Designer':['Yuki Tanaka',35]}},
+];
+/* Location + work arrangement per brand, merged on. roleArr overrides the
+   headline arrangement for specific roles that must be on-site or remote. */
+const BRAND_EXTRA={
+ altitude:{loc:'Los Angeles, CA',arr:'Hybrid',travel:'Occasional LA studio days',
+   roleArr:{'Product Photographer':'In person','Social Media Manager':'Remote','Marketing Specialist':'Remote'}},
+ kettle:{loc:'Santa Barbara, CA',arr:'Hybrid',travel:'Local shoots + campus',
+   roles:['Brand Designer','Packaging Designer','Food Scientist','Product Photographer','Social Media Creator','Shopify Developer','Marketing Specialist'],
+   roleArr:{'Social Media Creator':'In person','Product Photographer':'In person','Food Scientist':'Hybrid','Packaging Designer':'Remote','Shopify Developer':'Remote','Marketing Specialist':'Remote'}},
+ halo:{loc:'Los Angeles, CA',arr:'Hybrid',roleArr:{'Product Photographer':'In person','Marketing Specialist':'Remote','Packaging Designer':'Remote'}},
+ offgrid:{loc:'Remote-first',arr:'Remote'},
+ lowercase:{loc:'Remote-first',arr:'Remote'},
+ meridian:{loc:'Remote-first',arr:'Remote',roleArr:{'Product Photographer':'In person'}},
+ slowhours:{loc:'Portland, OR',arr:'Hybrid',roleArr:{'Product Photographer':'In person','Brand Designer':'Remote','Packaging Designer':'Remote'}},
+ stillroom:{loc:'Remote-first',arr:'Remote'},
+};
+BRANDS.forEach(b=>{const x=BRAND_EXTRA[b.id];if(x){if(x.roles)b.roles=x.roles;b.loc=x.loc;b.arr=x.arr;if(x.travel)b.travel=x.travel;b.roleArr=x.roleArr||{};}else{b.loc='Remote-first';b.arr='Remote';b.roleArr={};}});
+const bById=id=>BRANDS.find(b=>b.id===id)||BRANDS[0];
+const openRoles=b=>b.roles.filter(r=>!b.filled[r]);
+/* arrangement for a specific open role on a brand */
+const roleArrangement=(b,r)=>(b.roleArr&&b.roleArr[r])||b.arr||'Remote';
+
+/* Launch Team is organised into four simple groups. */
+const ROLE_GROUP={
+ 'Food Scientist':'Product','Cosmetic Chemist':'Product','Product Developer':'Product','Manufacturer':'Product',
+ 'Fashion Designer':'Product','Pattern Maker':'Product','Packaging Designer':'Product','Product Designer':'Product','Supply Chain Specialist':'Product',
+ 'Brand Designer':'Brand','Graphic Designer':'Brand','Creative Director':'Brand','Copywriter':'Brand',
+ 'Photographer':'Brand','Product Photographer':'Brand','Videographer':'Brand','Stylist':'Brand','Web Designer':'Brand','Shopify Developer':'Brand','Developer':'Brand',
+ 'Social Media Manager':'Growth','Social Media Creator':'Growth','Marketing Specialist':'Growth','Influencer Marketing Specialist':'Growth','Retail Consultant':'Growth','Merchandising Consultant':'Growth',
+ 'Accountant':'Operations','Legal Consultant':'Operations',
+};
+const GROUP_ORDER=['Product','Brand','Growth','Operations'];
+const roleGroup=r=>ROLE_GROUP[r]||'Brand';
+
+const STEPS=[
+ ['Tell us what you\'re building.','Pick your industry and describe your idea in a sentence or two.'],
+ ['We recommend the team you\'ll need.','Launchory suggests the exact roles to bring your brand to life — and what each one does.'],
+ ['Discover and connect with talented people.','Browse real portfolios, compare rates and reviews, and invite people to your brand.'],
+ ['Build your company together.','Manage your team, track applications, and hit your milestones — all in one place.'],
+];
+
+/* ===== STATE + ROUTER ===== */
+const S={route:'home',params:{},role:'guest',fTab:'overview',tTab:'recommended',
+ build:{step:0,cat:null,name:'',idea:'',stage:'Concept',budget:'$5k–$10k',timeline:'3 months'},
+ team:[], invited:new Set(), applied:new Set(), saved:new Set(), savedTalent:new Set(),
+ connected:new Set(), shortlisted:new Set(), declined:new Set(), compare:new Set(),
+ explore:{q:'',ind:'All',role:'All',stage:'All'}, talent:{q:'',role:'All',ind:'All',avail:'All',exp:'All',arr:'All'},
+ heroRoles:['Brand Designer','Packaging Designer','Food Scientist','Product Photographer','Social Media Creator','Shopify Developer','Marketing Specialist'],
+ access:{step:'choose',role:'founder'}};
+function go(r,p){if(r==='login'&&S.route!=='login')S.access={step:'choose',role:'founder'};S.route=r;S.params=p||{};window.scrollTo({top:0,behavior:'auto'});render();}
+const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+/* ===== NAV / FOOTER ===== */
+function navbar(){
+ const links=[['Explore Brands','explore'],['Explore Talent','talent'],['How it works','how']];
+ const dash=S.role==='talent'?'talent-dashboard':'founder-dashboard';
+ const right=S.role==='guest'
+  ? `<button class="nav-link" data-nav="login">Log in</button><button class="btn btn-primary btn-sm" data-nav="build">Start Building</button>`
+  : `<button class="nav-link" data-nav="${dash}">${S.role==='talent'?'My Studio':'Brand Hub'}</button><button class="iconbtn" data-nav="${dash}" aria-label="Dashboard">${av(S.role==='talent'?'Alex Morgan':'Kennedy Owen',S.role==='talent'?31:1010,32)}</button>`;
+ return `<header class="nav" id="nav"><div class="wrap"><div class="nav-in">
+  <button class="brand" data-nav="home" aria-label="Launchory home"><span class="brand-mark">${logoMark(16)}</span>Launchory</button>
+  <nav class="show-lg" style="gap:4px" aria-label="Main">${links.map(l=>`<button class="nav-link ${S.route===l[1]?'on':''}" data-nav="${l[1]}">${l[0]}</button>`).join('')}</nav>
+  <div class="show-lg ic g3">${right}</div>
+  <button class="iconbtn hide-lg" id="mobBtn" aria-label="Menu">${ico('menu',22)}</button>
+ </div></div>
+ <div id="mobMenu" class="hide-lg" style="display:none;flex-direction:column;border-top:1px solid var(--line);background:var(--paper)">
+  <div class="wrap" style="padding:12px 22px 18px;display:flex;flex-direction:column;gap:2px">
+   ${links.map(l=>`<button class="nav-link" style="text-align:left;padding:12px" data-nav="${l[1]}">${l[0]}</button>`).join('')}
+   <button class="nav-link" style="text-align:left;padding:12px" data-nav="login">Log in</button>
+   <button class="btn btn-primary btn-md mt2" data-nav="build">Start Building</button>
+  </div>
+ </div></header>`;
+}
+function footer(){
+ const cols=[['Product',[['Explore Brands','explore'],['Explore Talent','talent'],['Start Building','build'],['How it works','how']]],
+  ['Founders',[['Start Building','build'],['Brand Hub','founder-dashboard']]],
+  ['Creatives',[['Explore Brands','explore'],['My Studio','talent-dashboard'],['A profile','profile:alex-morgan']]]];
+ return `<footer class="footer"><div class="wrap" style="padding:52px 22px 36px">
+  <div class="grid" style="grid-template-columns:1fr;gap:36px" id="footgrid">
+   <div style="max-width:320px"><div class="brand"><span class="brand-mark">${logoMark(16)}</span>Launchory</div>
+    <p class="small muted mt3">Build your idea with the right people. Tell us what you're creating and we'll help you find the team to make it real.</p>
+    <div class="flex g2 mt4"><button class="btn btn-primary btn-sm" data-nav="build">Start Building</button><button class="btn btn-outline btn-sm" data-nav="talent">Explore Talent</button></div>
+   </div>
+   <div class="grid" style="grid-template-columns:1fr 1fr 1fr;gap:28px">
+    ${cols.map(c=>`<div><div class="fw7 small mb3">${c[0]}</div><div style="display:flex;flex-direction:column;gap:11px">${c[1].map(it=>`<button class="fl" style="text-align:left" data-navx="${it[1]}">${it[0]}</button>`).join('')}</div></div>`).join('')}
+   </div>
+  </div>
+  <div class="hairline mt5" style="margin-bottom:18px"></div>
+  <div class="flex jb wr g3 muted2 xs"><span>© 2026 Launchory — a prototype</span><span class="flex g4"><button class="fl">Privacy</button><button class="fl">Terms</button><button class="fl">Contact</button></span></div>
+ </div></footer>`;
+}
+
+/* ===== SHARED CARDS ===== */
+function statusPill(st){const M={Connected:['var(--accent)','var(--accent-soft)'],Shortlisted:['#C08A2E','#F6EEDD'],Applied:['#6C6D66','var(--cream2)'],Sent:['#6C6D66','var(--cream2)'],Viewed:['#3A6EA5','#E4EDF6'],Interviewing:['#7A4FB0','#EFE7F7'],Accepted:['var(--accent)','var(--accent-soft)'],Review:['#C08A2E','#F6EEDD'],'Not started':['#8E8F87','var(--cream2)'],'Not selected':['#9A5B4B','#F3E8E4']};const c=M[st]||M['Applied'];return `<span class="status" style="color:${c[0]};background:${c[1]}"><span class="d" style="background:${c[0]}"></span>${st}</span>`;}
+function brandCard(b){const saved=S.saved.has(b.id);const loc=b.loc&&b.loc!=='Remote-first'?b.loc.split(',')[0]:'Remote-first';return `<article class="card hov hovimg reveal" style="overflow:hidden;cursor:pointer;display:flex;flex-direction:column" data-open="${b.id}" tabindex="0" role="button" aria-label="${b.n}">
+  <div style="position:relative">${ph(b.seed,{ratio:'4/3',tone:b.tone,scrim:1,tag:b.ind})}
+   <button class="savebtn ${saved?'on':''}" style="position:absolute;top:14px;right:14px;z-index:3" data-save="${b.id}" aria-label="Save brand" aria-pressed="${saved}">${ico('heart',17)}</button>
+   <div style="position:absolute;left:18px;bottom:16px;right:18px;z-index:2;color:#fff"><div class="xs" style="color:rgba(255,255,255,.82);margin-bottom:3px">${b.stage}</div><div class="h3" style="color:#fff">${b.n}</div></div>
+  </div>
+  <div class="pad" style="display:flex;flex-direction:column;flex:1;gap:16px">
+   <p class="muted line-clamp-2" style="flex:1;font-size:15px;line-height:1.55">${b.one}</p>
+   <div class="flex ic g2 wr xs muted"><span class="flex ic g1">${ico(arrIcon(b.arr),12)} ${b.arr}</span><span class="s0" style="width:3px;height:3px;border-radius:999px;background:var(--line2)"></span><span>${loc}</span><span class="s0" style="width:3px;height:3px;border-radius:999px;background:var(--line2)"></span><span>${b.budget}</span></div>
+   <div class="flex g1 wr">${openRoles(b).slice(0,2).map(r=>`<span class="tag tag-accent" style="font-size:11px">${r}</span>`).join('')}${openRoles(b).length>2?`<span class="tag" style="font-size:11px">+${openRoles(b).length-2}</span>`:''}</div>
+   <div class="flex ic jb" style="padding-top:14px;border-top:1px solid var(--line)">
+    <div class="flex ic g2">${av(b.founder.n,b.founder.seed,26)}<span class="xs muted">${b.founder.n}</span></div>
+    <span class="xs muted flex ic g1">${ico('users',13)} ${b.interested} interested</span>
+   </div>
+  </div></article>`;}
+function talentCard(c){const saved=S.savedTalent.has(c.id);const cmp=S.compare.has(c.id);return `<article class="card hov hovimg reveal" style="overflow:hidden;cursor:pointer;display:flex;flex-direction:column" data-profile="${c.id}" tabindex="0" role="button" aria-label="${c.n}">
+  <div style="position:relative">${ph(c.work[0],{ratio:'4/3',tone:c.tone,scrim:1,alt:c.role+' work by '+c.n})}
+   <button class="savebtn ${saved?'on':''}" style="position:absolute;top:14px;right:14px;z-index:3" data-savet="${c.id}" aria-label="${saved?'Saved':'Save talent'}" aria-pressed="${saved}">${ico('heart',17)}</button>
+   <button class="cmpbtn ${cmp?'on':''}" style="position:absolute;top:14px;left:14px;z-index:3" data-cmp="${c.id}" aria-label="${cmp?'Remove from compare':'Add to compare'}" aria-pressed="${cmp}" title="${cmp?'In compare':'Add to compare'}">${ico(cmp?'check':'plus',16)}</button>
+  </div>
+  <div class="pad" style="flex:1;display:flex;flex-direction:column;gap:14px">
+   <div class="flex ic g2">${av(c.n,c.seed,38)}<div class="f1" style="min-width:0"><div class="flex ic g1"><span class="fw7" style="line-height:1.2">${c.n}</span>${isVerified(c)?verifiedMark(11):''}</div><div class="xs muted">${c.role}</div></div><span class="flex ic g1 xs muted s0">${ico('star',12)} ${c.rating}</span></div>
+   <div class="flex ic g2 wr xs muted"><span class="flex ic g1">${ico(arrIcon(c.arr),12)} ${c.arr}</span><span class="s0" style="width:3px;height:3px;border-radius:999px;background:var(--line2)"></span><span>${c.loc}</span></div>
+   <div class="flex ic jb" style="padding-top:14px;border-top:1px solid var(--line)"><span class="fw6 small">${c.rate}</span><span class="xs flex ic g1" style="color:var(--accent)"><span class="d" style="width:6px;height:6px;border-radius:999px;background:var(--accent)"></span>${c.avail.replace('Available ','').replace('Open to ','')}</span></div>
+  </div></article>`;}
+
+/* ===== HOME ===== */
+function pageHome(){
+ return `
+ <section class="wrap" style="padding-top:44px;padding-bottom:8px">
+  <div class="grid" id="herogrid" style="grid-template-columns:1fr;gap:40px;align-items:center">
+   <div>
+    <div class="reveal flex ic g2"><span class="tag tag-accent">${ico('sparkles',13)} Build a brand, not a to-do list</span></div>
+    <h1 class="h1 reveal mt3">Build your idea<br>with the <span class="serif-accent" style="color:var(--accent)">right people.</span></h1>
+    <p class="lead reveal mt3 maxw">Describe your idea. Launchory shows you the team you'll need — and the people ready to build it with you.</p>
+    <div class="reveal flex g2 wr mt4">
+     <button class="btn btn-primary btn-lg" data-nav="build">Start Building ${ico('arrow',18)}</button>
+     <button class="btn btn-outline btn-lg" data-nav="talent">Explore Talent</button>
+    </div>
+    <button class="reveal link mt4" data-nav="explore" style="color:var(--charcoal)">Have a skill? Discover brands to help build ${ico('arrow',15)}</button>
+   </div>
+   <div class="reveal">${heroPreview()}</div>
+  </div>
+ </section>
+
+ <section class="wrap sec">
+  <div class="flex ie jb wr g3 mb4">
+   <div><div class="eyebrow reveal">Start here</div><h2 class="h2 reveal mt2">What are you building?</h2></div>
+   <p class="reveal small muted" style="max-width:320px">Pick a category — we'll recommend the exact team to make it real.</p>
+  </div>
+  <div class="grid" id="indgrid" style="grid-template-columns:1fr 1fr">
+   ${INDUSTRIES.map(i=>industryCard(i)).join('')}
+  </div>
+ </section>
+
+ <section style="background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap sec">
+  <div class="flex ie jb wr g3 mb4"><div><div class="eyebrow reveal">Discover brands</div><h2 class="h2 reveal mt2">Brands looking for their team.</h2></div><button class="reveal link" data-nav="explore">See all ${ico('arrow',15)}</button></div>
+  <div class="hscroll">${BRANDS.slice(0,6).map(b=>`<div style="width:330px">${brandCard(b)}</div>`).join('')}</div>
+ </div></section>
+
+ <section class="wrap sec">
+  <div class="flex ie jb wr g3 mb4"><div><div class="eyebrow reveal">Meet the talent</div><h2 class="h2 reveal mt2">People ready to build with you.</h2></div><button class="reveal link" data-nav="talent">See all ${ico('arrow',15)}</button></div>
+  <div class="hscroll">${CREATIVES.slice(0,6).map(c=>`<div style="width:280px">${talentCard(c)}</div>`).join('')}</div>
+ </section>
+
+ <section style="background:var(--ink);color:#fff"><div class="wrap sec">
+  <div class="eyebrow reveal" style="color:rgba(255,255,255,.72)">How it works</div>
+  <h2 class="h2 reveal mt2" style="color:#fff">Four steps from idea to launch.</h2>
+  <div class="grid mt5" id="stepsgrid" style="grid-template-columns:1fr 1fr">
+   ${STEPS.map((s,i)=>`<div class="reveal" style="border-top:2px solid rgba(255,255,255,.16);padding-top:16px"><div class="fw8" style="font-size:26px;color:rgba(255,255,255,.72)">0${i+1}</div><div class="h4 mt2" style="color:#fff">${s[0]}</div><p class="small mt1" style="color:rgba(255,255,255,.6)">${s[1]}</p></div>`).join('')}
+  </div>
+  <div class="reveal flex g2 wr mt5"><button class="btn btn-accent btn-lg" data-nav="build">Start Building</button><button class="btn btn-lg" data-nav="explore" style="background:rgba(255,255,255,.12);color:#fff">Explore Brands</button></div>
+ </div></section>`;
+}
+function heroPreview(){
+ const roles=S.heroRoles;
+ return `<div class="card" id="heroCard" style="box-shadow:var(--sh3);padding:0;overflow:hidden;max-width:440px;margin:0 auto;position:relative;z-index:1">
+  <div class="flex ic jb" style="padding:16px 18px;background:var(--ink);color:#fff">
+   <div class="flex ic g2">${ico('sparkles',16)}<span class="fw7 small">Your Launch Team</span></div>
+   <span class="tag" style="background:rgba(255,255,255,.14);color:#fff">Auto-generated</span>
+  </div>
+  <div style="padding:14px 16px">
+   <div class="xs muted mb2">Building</div>
+   <div class="fw7 mb3">A premium matcha brand ${ico('bolt',14)}</div>
+   <div id="heroRoles" style="display:flex;flex-direction:column;gap:7px;max-height:236px;overflow:hidden">
+    ${roles.map((r,i)=>heroRoleRow(r,i)).join('')}
+   </div>
+   <div class="flex g2 mt3">
+    <button class="btn btn-soft btn-sm f1" id="heroAdd">${ico('plus',15)} Add role</button>
+    <button class="btn btn-outline btn-sm f1" data-nav="talent">View matches</button>
+   </div>
+   <button class="btn btn-primary btn-block btn-md mt2" data-nav="build">Build my team ${ico('arrow',16)}</button>
+  </div>
+ </div>`;
+}
+function heroRoleRow(r,i){return `<div class="flex ic g2 riserow" style="padding:8px 10px;border:1px solid var(--line);border-radius:11px;animation-delay:${i*70}ms">
+  <span class="s0" style="width:26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center">${ico('check',14)}</span>
+  <div class="f1" style="min-width:0"><div class="small fw6" style="line-height:1.1">${r}</div></div>
+  <span class="xs muted2 s0">${(ROLE[r]||{}).p||''}</span>
+  <button class="iconbtn s0" style="width:26px;height:26px" data-heroremove="${r}" aria-label="Remove ${r}">${ico('x',14)}</button>
+ </div>`;}
+function renderHeroRoles(){const hr=document.getElementById('heroRoles');if(hr)hr.innerHTML=S.heroRoles.map((x,i)=>heroRoleRow(x,i)).join('');}
+function industryCard(i){return `<button class="reveal hov hovimg" data-build="${i.id}" style="background:none;text-align:left;padding:0;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line)">
+  <div style="position:relative">${ph(i.seed,{ratio:'16/9',tone:i.tone,scrim:1})}
+   <div style="position:absolute;left:16px;bottom:14px;z-index:2;color:#fff">
+    <div class="h3" style="color:#fff">${i.name}</div><div class="xs" style="color:rgba(255,255,255,.85);max-width:230px">${i.desc}</div>
+   </div>
+   <span style="position:absolute;top:14px;right:14px;z-index:2;width:34px;height:34px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--ink);display:grid;place-items:center">${ico('arrowUR',17)}</span>
+  </div>
+ </button>`;}
+
+/* ===== BUILD / ONBOARDING ===== */
+function pageBuild(){
+ const b=S.build;
+ if(b.step===2){ // generating
+  return `<section class="wrap-s" style="padding:120px 22px;text-align:center">
+   <div class="spinner mx"></div>
+   <h1 class="h2 mt4">Building your Launch Team…</h1>
+   <p class="muted mt2">Matching <b>${esc(b.name||'your brand')}</b> with the roles you'll need.</p>
+  </section>`;
+ }
+ if(b.step===3) return buildTeam();
+ const labels=['Industry','Your idea'];
+ const bar=`<div class="flex ic g2 jc mb5" aria-hidden="true">${[0,1].map(i=>`<div class="flex ic g2"><span style="width:26px;height:26px;border-radius:999px;font-size:12.5px;font-weight:800;display:grid;place-items:center;background:${i<=b.step?'var(--accent)':'var(--cream2)'};color:${i<=b.step?'#fff':'var(--stone2)'}">${i+1}</span><span class="small fw7" style="color:${i<=b.step?'var(--ink)':'var(--stone2)'}">${labels[i]}</span>${i<1?'<span style="width:26px;height:1.5px;background:var(--line2)"></span>':''}</div>`).join('')}</div>`;
+ let body;
+ if(b.step===0){
+  body=`<div class="tc mb5"><h1 class="h2">What are you building?</h1><p class="lead muted mt2 mx maxw">Pick the category closest to your idea.</p></div>
+   <div class="grid" id="bindgrid" style="grid-template-columns:1fr 1fr">
+    ${INDUSTRIES.map(i=>`<button class="hov hovimg ${b.cat===i.id?'sel':''}" data-pickcat="${i.id}" style="background:none;text-align:left;padding:0;border-radius:var(--r);overflow:hidden;border:2px solid ${b.cat===i.id?'var(--accent)':'var(--line)'}">
+      <div style="position:relative">${ph(i.seed,{ratio:'5/3',tone:i.tone,scrim:1})}
+       <div style="position:absolute;left:13px;bottom:11px;z-index:2;color:#fff"><div class="fw7">${i.name}</div><div class="xs" style="color:rgba(255,255,255,.8)">${i.desc}</div></div>
+       ${b.cat===i.id?`<span style="position:absolute;top:10px;right:10px;z-index:2;width:26px;height:26px;border-radius:999px;background:#fff;color:var(--accent);display:grid;place-items:center">${ico('check',15)}</span>`:''}
+      </div></button>`).join('')}
+   </div>`;
+ } else {
+  const cat=indById(b.cat);
+  body=`<div class="tc mb5"><span class="tag tag-accent mb3" style="display:inline-flex">${cat.name}</span><h1 class="h2">Tell us your idea.</h1><p class="lead muted mt2 mx maxw">A sentence or two is plenty — this is what talent reads first.</p></div>
+   <div class="mx" style="max-width:560px;display:flex;flex-direction:column;gap:20px">
+    <div><label class="field-l" for="bName">Brand or project name</label><input id="bName" class="input" placeholder="e.g. Kettle & Koto" value="${esc(b.name)}"></div>
+    <div><label class="field-l" for="bIdea">Describe what you want to create</label><textarea id="bIdea" class="textarea" rows="3" placeholder="I want to build a premium matcha brand for college students that feels modern, social, and approachable.">${esc(b.idea)}</textarea></div>
+    <div class="grid" style="grid-template-columns:1fr 1fr;gap:14px">
+     <div><label class="field-l" for="bStage">Current stage</label><select id="bStage" class="select">${['Just an idea','Concept','Pre-launch','Launching','Scaling'].map(x=>`<option ${x===b.stage?'selected':''}>${x}</option>`).join('')}</select></div>
+     <div><label class="field-l" for="bBudget">Estimated budget</label><select id="bBudget" class="select">${['Under $3k','$3k–$5k','$5k–$10k','$10k–$25k','$25k+'].map(x=>`<option ${x===b.budget?'selected':''}>${x}</option>`).join('')}</select></div>
+    </div>
+    <div><label class="field-l" for="bTime">Desired launch timeline</label><select id="bTime" class="select">${['1 month','2 months','3 months','4 months','6 months','Flexible'].map(x=>`<option ${x===b.timeline?'selected':''}>${x}</option>`).join('')}</select></div>
+   </div>`;
+ }
+ const back=b.step>0?`<button class="btn btn-ghost btn-md" id="wizBack">${ico('arrowL',16)} Back</button>`:`<button class="btn btn-ghost btn-md" data-nav="home">${ico('arrowL',16)} Home</button>`;
+ const dis=b.step===0&&!b.cat;
+ return `<section class="wrap-s" style="padding:40px 22px 40px">${bar}<div>${body}</div></section>
+  <div class="stickybar"><div class="wrap-s" style="width:100%;display:flex;justify-content:space-between;padding:0;align-items:center">${back}<button class="btn btn-primary btn-md" id="wizNext" ${dis?'disabled':''}>${b.step===0?'Continue':'Generate my team'} ${ico('arrow',16)}</button></div></div>`;
+}
+function buildTeam(){
+ const cat=indById(S.build.cat);
+ const onCount=S.team.filter(t=>t.on).length;let gi=0;
+ const groupsHtml=GROUP_ORDER.map(g=>{const rows=S.team.filter(t=>roleGroup(t.role)===g);if(!rows.length)return '';
+   return `<div style="margin-bottom:30px"><div class="flex ic g3 mb3"><span class="eyebrow">${g}</span><span class="hairline f1"></span></div><div style="display:flex;flex-direction:column;gap:12px">${rows.map(t=>teamRow(t,gi++)).join('')}</div></div>`;}).join('');
+ return `<section class="wrap-s" style="padding:44px 22px 40px">
+  <div class="tc mb6"><span class="tag tag-accent mb3" style="display:inline-flex">${cat.name}</span><h1 class="h2">Your recommended Launch Team.</h1><p class="lead muted mt3 mx">Here's who we'd bring on to build <b style="color:var(--ink);font-weight:600">${esc(S.build.name||'your brand')}</b> — organized into the parts of a company. Add, remove, or preview matching talent.</p><div class="flex ic g3 jc mt4 xs muted"><span>${onCount} roles</span><span class="s0" style="width:3px;height:3px;border-radius:999px;background:var(--line2)"></span><span>your complete starting team</span></div></div>
+  <div id="teamList">${groupsHtml}</div>
+  <button class="btn btn-outline btn-block btn-md mt2" id="addRoleBtn">${ico('plus',16)} Add another role</button>
+  </section>
+  <div class="stickybar"><div class="wrap-s" style="width:100%;display:flex;justify-content:space-between;padding:0;align-items:center">
+   <button class="btn btn-ghost btn-md" id="wizBack">${ico('arrowL',16)} Back</button>
+   <div class="flex ic g2"><span class="xs muted hide-sm">${S.team.filter(t=>t.on).length} roles selected</span><button class="btn btn-primary btn-md" id="wizNext">Continue to My Brand ${ico('arrow',16)}</button></div>
+  </div></div>`;
+}
+function teamRow(t,i){const r=ROLE[t.role]||{};return `<div class="card" style="padding:16px 18px;animation:up .45s ease forwards;animation-delay:${i*80}ms;opacity:0">
+  <div class="flex ic g3 is">
+   <span class="s0" style="width:40px;height:40px;border-radius:11px;background:${t.on?'var(--accent-soft)':'var(--cream2)'};color:${t.on?'var(--accent)':'var(--stone)'};display:grid;place-items:center">${t.on?ico('check',18):ico('briefcase',18)}</span>
+   <div class="f1"><div class="flex ic g2 wr"><span class="fw7">${t.role}</span><span class="tag tag-line">${r.p||''}</span></div><p class="small muted mt1">${r.d||''}</p>
+    <div class="flex g2 mt2 wr"><button class="link" data-viewmatches="${t.role}">${ico('users',14)} View matching talent</button></div>
+   </div>
+   <button class="btn ${t.on?'btn-soft':'btn-accent'} btn-sm s0" data-toggleteam="${t.role}">${t.on?'Remove':'Add'}</button>
+  </div></div>`;}
+
+/* ===== MATCH EXPLANATION ===== short, human, not AI-sounding */
+function matchWhy(c,role){
+ const name=c.n.split(' ')[0];const bits=[];
+ bits.push(c.role===role?`works as a ${c.role.toLowerCase()}`:`brings ${c.role.toLowerCase()} experience`);
+ if(c.campus)bits.push(`has real reach at ${c.campus}`);
+ else if(c.social)bits.push(`has an engaged ${c.social.followers} following`);
+ else if(c.exp==='Expert'||c.exp==='Senior')bits.push(`is ${c.exp==='Expert'?'deeply':'well'} experienced`);
+ if(c.arr==='In person'&&c.loc)bits.push(`can work in person in ${c.loc.split(',')[0]}`);
+ else if(c.arr==='Remote')bits.push('works remotely');
+ bits.push(`is ${c.avail.toLowerCase()}`);
+ return `${name} is a strong match — ${bits.slice(0,3).join(', ')}.`;
+}
+
+/* ===== TALENT DRAWER (matching talent for a role) ===== */
+function openMatchDrawer(role){
+ const list=matchesForRole(role);
+ const root=document.getElementById('drawer-root');
+ root.innerHTML=`<div class="drawer-ovl" data-dclose></div><aside class="drawer" role="dialog" aria-modal="true" aria-label="Matching ${role}s">
+  <div class="flex ic jb" style="padding:18px 20px;border-bottom:1px solid var(--line)"><div><div class="eyebrow">Matching talent</div><div class="h3 mt1">${role}s</div></div><button class="iconbtn" data-dclose aria-label="Close">${ico('x',20)}</button></div>
+  <div style="padding:16px 20px;overflow-y:auto;display:flex;flex-direction:column;gap:14px">
+   ${list.map(c=>`<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:11px">
+    <div style="display:flex;gap:13px;align-items:flex-start">
+     <button data-profile="${c.id}" style="border-radius:12px;overflow:hidden;flex-shrink:0" aria-label="View ${c.n}">${ph(c.work[0],{style:'width:76px;height:88px;border-radius:12px',tone:c.tone,alt:c.n})}</button>
+     <div class="f1" style="min-width:0"><div class="flex ic jb"><span class="fw7">${c.n}</span><span class="xs fw6 flex ic g1">${ico('star',12)} ${c.rating}</span></div>
+      <div class="xs muted">${c.role} · ${c.loc}</div>
+      <div class="flex ic g2 mt1 wr"><span class="fw6 small">${c.rate}</span><span class="tag tag-accent" style="font-size:11px">${ico(arrIcon(c.arr),11)} ${c.arr}</span></div>
+     </div></div>
+    <p class="xs" style="background:var(--accent-soft);color:var(--accent-ink);padding:9px 11px;border-radius:10px;line-height:1.4">${matchWhy(c,role)}</p>
+    <div class="flex g2"><button class="btn btn-outline btn-sm f1" data-profile="${c.id}">View profile</button><button class="btn btn-primary btn-sm f1" data-invite="${c.id}">${S.invited.has(c.id)?'Invited ✓':'Invite'}</button></div>
+   </div>`).join('')}
+  </div></aside>`;
+ document.body.style.overflow='hidden';
+ root.querySelectorAll('[data-dclose]').forEach(e=>e.addEventListener('click',closeDrawer));
+ trapFocus(root.querySelector('.drawer'));
+}
+function closeDrawer(){document.getElementById('drawer-root').innerHTML='';document.body.style.overflow='';releaseFocus();}
+
+/* ===== COMPARE ===== up to 3 people, difference-aware, with honest labels */
+function toggleCompare(id){
+ if(S.compare.has(id)){S.compare.delete(id);}
+ else{if(S.compare.size>=3){toast('Compare up to 3 at a time');return;}S.compare.add(id);}
+ render();
+}
+function compareTray(){
+ const root=document.getElementById('cmp-root');if(!root)return;
+ if(!S.compare.size){root.innerHTML='';return;}
+ const list=[...S.compare].map(cById);
+ root.innerHTML=`<div class="cmptray" role="region" aria-label="Compare tray">
+   <div class="flex ic g1">${list.map(c=>`<span style="position:relative">${av(c.n,c.seed,32,true)}<button data-cmp="${c.id}" aria-label="Remove ${c.n}" style="position:absolute;top:-5px;right:-5px;width:17px;height:17px;border-radius:999px;background:#fff;color:var(--ink);display:grid;place-items:center;box-shadow:var(--sh1)">${ico('x',11)}</button></span>`).join('')}</div>
+   <span class="small fw6 hide-sm" style="color:rgba(255,255,255,.85)">${list.length} selected</span>
+   <div class="flex ic g2">
+    <button class="btn btn-sm" style="background:rgba(255,255,255,.16);color:#fff" data-cmpclear>Clear</button>
+    <button class="btn btn-accent btn-sm" data-cmpopen ${list.length<2?'disabled':''}>Compare ${list.length<2?'':'('+list.length+')'}</button>
+   </div></div>`;
+ // data-cmp (remove buttons) handled by global delegation
+ const cl=root.querySelector('[data-cmpclear]');if(cl)cl.addEventListener('click',()=>{S.compare.clear();render();});
+ const op=root.querySelector('[data-cmpopen]');if(op)op.addEventListener('click',openCompare);
+}
+function numFrom(s){const m=String(s).replace(/[, ]/g,'').match(/\d+(\.\d+)?/);return m?parseFloat(m[0]):null;}
+function openCompare(){
+ const list=[...S.compare].map(cById);if(list.length<2)return;
+ const root=document.getElementById('modal-root');
+ // honest, non-absolute recommendation labels
+ const labels={};
+ const cheapest=list.slice().sort((a,b)=>(numFrom(a.rate)||1e9)-(numFrom(b.rate)||1e9))[0];
+ (labels[cheapest.id]=labels[cheapest.id]||[]).push('Best for budget');
+ const local=list.find(c=>c.arr==='In person');if(local)(labels[local.id]=labels[local.id]||[]).push('Best for local & in-person');
+ const social=list.slice().filter(c=>c.social).sort((a,b)=>(numFrom(b.social.followers)||0)-(numFrom(a.social.followers)||0))[0];if(social)(labels[social.id]=labels[social.id]||[]).push('Best for reach');
+ const exper=list.slice().sort((a,b)=>({Junior:0,Mid:1,Senior:2,Expert:3}[b.exp]-{Junior:0,Mid:1,Senior:2,Expert:3}[a.exp]))[0];if(exper&&!labels[exper.id])(labels[exper.id]=labels[exper.id]||[]).push('Best for experience');
+ const rows=[
+  ['Role',c=>c.role],['Experience',c=>c.exp],['Location',c=>c.loc],
+  ['Work arrangement',c=>`${c.arr}${c.travel?' · '+c.travel:''}`],
+  ['Availability',c=>c.avail],['Typical rate',c=>c.rate],['Rating',c=>`★ ${c.rating} (${c.rev})`],
+  ['Industries',c=>c.ind.join(', ')],['Audience / network',c=>c.campus?`Campus reach · ${c.campus}`:(c.social?`${c.social.followers} followers · ${c.social.eng} eng.`:(c.creds?c.creds.join(', '):'—'))],
+  ['Services',c=>c.services.slice(0,3).join(', ')],
+ ];
+ // highlight rows where values differ
+ const diff=r=>new Set(list.map(c=>String(r[1](c)))).size>1;
+ const col=c=>`<div class="cmp-col">
+   <div style="position:relative">${ph(c.work[0],{ratio:'5/3',tone:c.tone,scrim:1,alt:c.n})}
+    <div style="position:absolute;left:12px;bottom:10px;z-index:2;color:#fff"><div class="fw7" style="color:#fff">${c.n}</div><div class="xs" style="color:rgba(255,255,255,.85)">${c.role}</div></div></div>
+   <div style="padding:10px 13px;display:flex;flex-wrap:wrap;gap:6px;min-height:34px">${(labels[c.id]||[]).map(l=>`<span class="cmp-rec">${ico('star',11)} ${l}</span>`).join('')||'<span class="xs muted2">A solid all-rounder</span>'}</div>
+   <p class="cmp-row" style="border-top:1px solid var(--line)"><span class="k">Why they fit</span>${matchWhy(c,c.role).replace(/^[^—]+—\s*/,'')}</p>
+   ${rows.map(r=>`<div class="cmp-row ${diff(r)?'hl':''}"><span class="k">${r[0]}</span>${esc(r[1](c))}</div>`).join('')}
+   <div style="padding:11px 13px;border-top:1px solid var(--line);display:flex;gap:8px;margin-top:auto">
+    <button class="btn btn-outline btn-sm f1" data-profile="${c.id}">Profile</button>
+    <button class="btn btn-primary btn-sm f1" data-invite="${c.id}">${S.invited.has(c.id)?'Invited ✓':'Invite'}</button></div>
+  </div>`;
+ root.innerHTML=`<div class="mwrap"><div class="movl" data-close></div><div class="modal cmp-modal" role="dialog" aria-modal="true" aria-label="Compare talent">
+  <div class="flex ic jb" style="padding:18px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--paper);z-index:2"><div><div class="eyebrow">Compare</div><div class="h3 mt1">${list.length} people, side by side</div></div><button class="iconbtn" data-close aria-label="Close">${ico('x',20)}</button></div>
+  <div style="padding:18px 22px"><p class="xs muted mb3">Highlighted rows are where they differ. Labels are guidance, not a verdict — the right person depends on what your brand needs most.</p>
+   <div class="cmp-grid" id="cmpGrid" style="grid-template-columns:repeat(${list.length},1fr)">${list.map(col).join('')}</div></div>
+ </div></div>`;
+ document.body.style.overflow='hidden';
+ root.querySelectorAll('[data-close]').forEach(e=>e.addEventListener('click',closeModal));
+ // mobile: stack columns
+ const g=root.querySelector('#cmpGrid');if(g&&innerWidth<720)g.style.gridTemplateColumns='1fr';
+ trapFocus(root.querySelector('.modal'));
+}
+
+/* ===== EXPLORE BRANDS ===== */
+function brandResults(){
+ const e=S.explore;
+ const r=BRANDS.filter(b=>{
+  const mq=!e.q||(b.n+b.one+b.ind+b.roles.join(' ')+b.founder.n).toLowerCase().includes(e.q.toLowerCase());
+  const mi=e.ind==='All'||b.ind===e.ind;const ms=e.stage==='All'||b.stage===e.stage;
+  const mr=e.role==='All'||openRoles(b).includes(e.role);return mq&&mi&&ms&&mr;});
+ if(!r.length)return `<div class="card tc" style="padding:56px 24px"><div class="h3">No brands match your filters</div><p class="muted mt2">Try clearing a filter.</p><button class="btn btn-outline btn-md mt4" id="clearBF">Clear filters</button></div>`;
+ return `<div class="grid" style="grid-template-columns:1fr">${r.map(b=>brandCard(b)).join('')}</div>`;
+}
+function pageExplore(){
+ const e=S.explore;
+ const inds=['All',...new Set(BRANDS.map(b=>b.ind))];
+ const roles=['All',...new Set(BRANDS.flatMap(b=>openRoles(b)))];
+ const stages=['All',...new Set(BRANDS.map(b=>b.stage))];
+ const chips=[];if(e.ind!=='All')chips.push(['ind',e.ind]);if(e.role!=='All')chips.push(['role',e.role]);if(e.stage!=='All')chips.push(['stage',e.stage]);
+ const opt=(a,c)=>a.map(x=>`<option value="${x}" ${x===c?'selected':''}>${x==='All'?'':''}${x}</option>`).join('');
+ return `<section class="wrap" style="padding-top:40px">
+  <div class="eyebrow reveal">For talent</div>
+  <h1 class="h1 reveal mt2">Discover brands worth building.</h1>
+  <p class="lead reveal mt2 maxw">Real founders with real vision and open roles. Find the brands you'd be proud to help launch.</p>
+ </section>
+ <section class="wrap" style="padding-top:26px;padding-bottom:56px">
+  <div class="grid" style="grid-template-columns:1fr;gap:26px" id="expLayout">
+   <div>
+    <div class="card pad reveal" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:14px">
+     <div class="flex ic g2 f1" style="min-width:180px;padding-left:6px">${ico('search',18)}<input id="expSearch" class="input" style="border:none;box-shadow:none;padding:8px 0" placeholder="Search brands, roles, founders…" value="${esc(e.q)}" aria-label="Search brands"></div>
+     <select id="expInd" class="select" style="width:auto;min-width:130px" aria-label="Industry"><option value="All">Industry: All</option>${inds.filter(x=>x!=='All').map(x=>`<option ${x===e.ind?'selected':''}>${x}</option>`).join('')}</select>
+     <select id="expRole" class="select" style="width:auto;min-width:130px" aria-label="Role"><option value="All">Role: All</option>${roles.filter(x=>x!=='All').map(x=>`<option ${x===e.role?'selected':''}>${x}</option>`).join('')}</select>
+     <select id="expStage" class="select" style="width:auto;min-width:120px" aria-label="Stage"><option value="All">Stage: All</option>${stages.filter(x=>x!=='All').map(x=>`<option ${x===e.stage?'selected':''}>${x}</option>`).join('')}</select>
+    </div>
+    ${chips.length?`<div class="flex g2 wr mt3" id="expChips">${chips.map(c=>`<span class="fchip">${c[1]}<button data-rmchip="${c[0]}" aria-label="Remove">${ico('x',12)}</button></span>`).join('')}</div>`:''}
+    <div class="mt4" id="expResults">${brandResults()}</div>
+   </div>
+  </div>
+ </section>`;
+}
+
+/* ===== BRAND DETAIL ===== */
+function pageBrand(){
+ const b=bById(S.params.id);const saved=S.saved.has(b.id);
+ const rel=BRANDS.filter(x=>x.id!==b.id&&x.ind===b.ind).concat(BRANDS.filter(x=>x.id!==b.id)).filter((v,i,a)=>a.indexOf(v)===i).slice(0,3);
+ const meta=(i,l,v)=>`<div class="flex ic g2" style="padding:12px 0;border-top:1px solid var(--line)"><span class="muted2">${ico(i,17)}</span><span class="small muted f1">${l}</span><span class="small fw7">${v}</span></div>`;
+ const team=Object.entries(b.filled);
+ return `<div class="wrap" style="padding-top:26px"><button class="link" style="color:var(--stone)" data-nav="explore">${ico('arrowL',16)} All brands</button></div>
+ <section class="wrap" style="padding-top:18px">
+  <div class="grid" id="brandTop" style="grid-template-columns:1fr;gap:26px">
+   <div>
+    <div class="reveal" style="position:relative">${ph(b.seed,{ratio:'16/9',tone:b.tone,cls:'rounded-lg',scrim:1,tag:b.ind,shift:-1})}
+     <button class="savebtn ${saved?'on':''}" style="position:absolute;top:14px;right:14px;z-index:3" data-save="${b.id}" aria-pressed="${saved}" aria-label="Save">${ico('heart',18)}</button></div>
+    <div class="reveal flex ic jb mt4 mb2"><div class="eyebrow" style="color:var(--stone)">Moodboard</div><span class="xs muted2">${b.ind} · ${b.stage}</span></div>
+    <div class="reveal mood-mosaic">${b.gallery.map((g,i)=>ph(g,{tone:b.tone,cls:'rounded',style:'height:100%',shift:[0,1,-1][i%3]})).join('')}</div>
+    <div class="reveal flex ic g3 wr mt3">
+     <div class="flex ic g1">${[TONES[b.tone][0],TONES[b.tone][1],'#F2ECE3','#191A17'].map(c=>`<span class="swatch" style="background:${c}"></span>`).join('')}</div>
+     <span class="xs muted2">Working palette</span>
+    </div>
+   </div>
+   <div>
+    <div class="reveal flex ic g2 wr"><span class="tag">${b.stage}</span><span class="tag tag-line">${b.ind}</span></div>
+    <h1 class="h1 reveal mt3" style="font-size:clamp(2rem,4vw,2.9rem)">${b.n}</h1>
+    <p class="lead reveal mt2">${b.one}</p>
+    <div class="reveal flex ic g2 mt3">${av(b.founder.n,b.founder.seed,38)}<div><div class="small fw7">${b.founder.n}</div><div class="xs muted">${b.founder.r}</div></div></div>
+    <div class="reveal card pad mt4">
+     ${meta('users','People interested',b.interested)}${meta('wallet','Budget',b.budget)}${meta('clock','Timeline',b.timeline)}${meta('bolt','Stage',b.stage)}${meta(arrIcon(b.arr),'Work',b.arr+(b.loc&&b.loc!=='Remote-first'?' · '+b.loc:''))}${b.travel?meta('send','Travel',b.travel):''}
+     <button class="btn btn-primary btn-block btn-md mt3" data-apply="${b.id}">Apply to join</button>
+     <button class="btn btn-outline btn-block btn-sm mt2" data-save="${b.id}">${saved?'✓ Saved':'Save brand'}</button>
+    </div>
+   </div>
+  </div>
+ </section>
+ <section class="wrap" style="padding-top:44px;padding-bottom:20px">
+  <div class="grid" id="brandBody" style="grid-template-columns:1fr;gap:40px">
+   <div style="display:flex;flex-direction:column;gap:34px">
+    <div class="reveal"><div class="h3 mb2">The vision</div><p class="lead muted" style="font-size:1.1rem">${b.vision}</p></div>
+    <div class="reveal"><div class="h4 mb2" style="color:var(--accent)">The opportunity</div><p class="muted">${b.opp}</p></div>
+    <div class="reveal"><div class="flex ie jb mb3"><div class="h3">Open roles</div><span class="xs muted">${openRoles(b).length} open · tap to expand</span></div><div style="display:flex;flex-direction:column;gap:10px">
+     ${openRoles(b).map((r,i)=>{const info=ROLE[r]||{};return `<div class="card rolecard" id="role${i}">
+       <div class="rolehead">
+        <button class="expandbtn" data-expand="${i}" aria-expanded="false" aria-controls="rd${i}" aria-label="Toggle details for ${r}">${ico('plus',15)}</button>
+        <div class="f1" style="min-width:0"><div class="flex ic g2 wr"><span class="fw7">${r}</span><span class="tag tag-accent" style="font-size:10.5px">${ico(arrIcon(roleArrangement(b,r)),10)} ${roleArrangement(b,r)}</span></div><div class="xs muted line-clamp-1">${info.d||''}</div></div>
+        <span class="tag tag-line s0 hide-sm">${info.p||''}</span>
+        <button class="btn btn-soft btn-sm s0" data-apply="${b.id}" data-role="${r}">Apply for this role</button>
+       </div>
+       <div class="roledetail" id="rd${i}" hidden>
+        <div class="hairline" style="margin-bottom:14px"></div>
+        <div class="grid" style="grid-template-columns:1fr;gap:10px">
+         <div><div class="xs fw7 mb1">What you'd own</div><div class="small muted">${info.d||''}</div></div>
+         <div class="flex g4 wr"><div><div class="xs fw7 mb1">Budget</div><div class="small muted">${info.p||'By agreement'}</div></div><div><div class="xs fw7 mb1">Work arrangement</div><div class="small muted">${roleArrangement(b,r)}${b.loc&&b.loc!=='Remote-first'?' · '+b.loc:''}</div></div><div><div class="xs fw7 mb1">Commitment</div><div class="small muted">Part-time · project-based</div></div></div>
+        </div>
+       </div>
+      </div>`;}).join('')}
+    </div></div>
+    <div class="reveal"><div class="h3 mb3">Team so far</div>${team.length?`<div class="flex wr g3">${team.map(([role,m])=>`<div class="flex ic g2 card" style="padding:8px 14px 8px 8px;border-radius:999px">${av(m[0],m[1],34)}<div><div class="xs fw7">${m[0]}</div><div class="xs muted">${role}</div></div></div>`).join('')}</div>`:`<div class="card pad muted">No one yet — you could be the first to join.</div>`}</div>
+   </div>
+   <aside class="reveal"><div class="card pad" style="position:sticky;top:82px">
+    <div class="flex ic g2 mb3">${av(b.founder.n,b.founder.seed,44)}<div><div class="fw7">${b.founder.n}</div><div class="xs muted">${b.founder.r} · ${b.ind}</div></div></div>
+    <p class="small muted">Building ${b.n}. Responds to most applications within 48 hours.</p>
+    <button class="btn btn-primary btn-block btn-md mt3" data-apply="${b.id}">Apply to join</button>
+    <button class="btn btn-outline btn-block btn-sm mt2" data-toast="Message sent to ${b.founder.n.split(' ')[0]}">Message founder</button>
+   </div></aside>
+  </div>
+ </section>
+ <section style="background:var(--cream);border-top:1px solid var(--line)"><div class="wrap sec"><div class="flex ie jb mb4"><h2 class="h3">More brands to explore</h2><button class="link" data-nav="explore">See all ${ico('arrow',14)}</button></div><div class="grid" style="grid-template-columns:1fr">${rel.map(r=>brandCard(r)).join('')}</div></div></section>`;
+}
+
+/* ===== EXPLORE TALENT ===== */
+function talentResults(){
+ const t=S.talent;
+ const r=CREATIVES.filter(c=>{
+  const mq=!t.q||(c.n+c.role+c.loc+c.ind.join(' ')+c.skills.join(' ')+(c.campus||'')).toLowerCase().includes(t.q.toLowerCase());
+  const mr=t.role==='All'||c.role===t.role;const mi=t.ind==='All'||c.ind.includes(t.ind);
+  const ma=t.avail==='All'||c.avail===t.avail;const me=t.exp==='All'||c.exp===t.exp;
+  const mn=t.arr==='All'||c.arr===t.arr;return mq&&mr&&mi&&ma&&me&&mn;});
+ if(!r.length)return `<div class="card tc" style="padding:56px 24px"><div class="h3">No talent matches</div><p class="muted mt2">Try clearing a filter.</p><button class="btn btn-outline btn-md mt4" id="clearTF">Clear filters</button></div>`;
+ return `<div class="grid" id="talentGridInner" style="grid-template-columns:1fr 1fr">${r.map(c=>talentCard(c)).join('')}</div>`;
+}
+function pageTalent(){
+ const t=S.talent;
+ const roles=['All',...new Set(CREATIVES.map(c=>c.role))];
+ const inds=['All',...new Set(CREATIVES.flatMap(c=>c.ind))];
+ const avails=['All',...new Set(CREATIVES.map(c=>c.avail))];
+ const exps=['All','Junior','Mid','Senior','Expert'];
+ const arrs=['All','Remote','Hybrid','In person','Flexible'];
+ const chips=[];['role','arr','ind','avail','exp'].forEach(k=>{if(t[k]!=='All')chips.push([k,t[k]]);});
+ return `<section class="wrap" style="padding-top:40px">
+  <div class="eyebrow reveal">Explore talent</div>
+  <h1 class="h1 reveal mt2">Find your people.</h1>
+  <p class="lead reveal mt2 maxw">Browse real portfolios, compare rates and availability, and invite the ones you want to build with.</p>
+ </section>
+ <section class="wrap" style="padding-top:24px;padding-bottom:56px">
+  <div class="card pad reveal" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:14px">
+   <div class="flex ic g2 f1" style="min-width:180px;padding-left:6px">${ico('search',18)}<input id="tSearch" class="input" style="border:none;box-shadow:none;padding:8px 0" placeholder="Search name, role, skill, or city…" value="${esc(t.q)}" aria-label="Search talent"></div>
+   <button class="btn btn-outline btn-sm show-sm" id="tFilterBtn">${ico('sliders',15)} Filters</button>
+   <div class="hide-sm flex g2 wr" style="align-items:center">
+    <select id="tRole" class="select" style="width:auto;min-width:130px" aria-label="Role"><option value="All">Role: All</option>${roles.filter(x=>x!=='All').map(x=>`<option ${x===t.role?'selected':''}>${x}</option>`).join('')}</select>
+    <select id="tArr" class="select" style="width:auto;min-width:130px" aria-label="Work arrangement"><option value="All">Arrangement: All</option>${arrs.filter(x=>x!=='All').map(x=>`<option ${x===t.arr?'selected':''}>${x}</option>`).join('')}</select>
+    <select id="tInd" class="select" style="width:auto;min-width:120px" aria-label="Industry"><option value="All">Industry: All</option>${inds.filter(x=>x!=='All').map(x=>`<option ${x===t.ind?'selected':''}>${x}</option>`).join('')}</select>
+    <select id="tAvail" class="select" style="width:auto;min-width:130px" aria-label="Availability"><option value="All">Availability: All</option>${avails.filter(x=>x!=='All').map(x=>`<option ${x===t.avail?'selected':''}>${x}</option>`).join('')}</select>
+    <select id="tExp" class="select" style="width:auto;min-width:110px" aria-label="Experience"><option value="All">Level: All</option>${exps.filter(x=>x!=='All').map(x=>`<option ${x===t.exp?'selected':''}>${x}</option>`).join('')}</select>
+   </div>
+  </div>
+  ${chips.length?`<div class="flex g2 wr mt3" id="tChips">${chips.map(c=>`<span class="fchip">${c[1]}<button data-rmtchip="${c[0]}" aria-label="Remove">${ico('x',12)}</button></span>`).join('')}</div>`:''}
+  <div class="mt4" id="tResults">${talentResults()}</div>
+ </section>`;
+}
+function openTalentFilterSheet(){
+ const t=S.talent;
+ const roles=['All',...new Set(CREATIVES.map(c=>c.role))];const inds=['All',...new Set(CREATIVES.flatMap(c=>c.ind))];
+ const avails=['All',...new Set(CREATIVES.map(c=>c.avail))];const exps=['All','Junior','Mid','Senior','Expert'];
+ const arrs=['All','Remote','Hybrid','In person','Flexible'];
+ const grp=(k,label,arr)=>`<div class="mb3"><div class="field-l">${label}</div><div class="flex g2 wr">${arr.map(x=>`<button class="chip ${t[k]===x||(t[k]==='All'&&x==='All')?'on':''}" data-sheetset="${k}:${x}">${x==='All'?'All':x}</button>`).join('')}</div></div>`;
+ const root=document.getElementById('modal-root');
+ root.innerHTML=`<div class="mwrap"><div class="movl" data-close></div><div class="modal" role="dialog" aria-modal="true" aria-label="Filters">
+  <div class="flex ic jb" style="padding:18px 20px;border-bottom:1px solid var(--line)"><div class="h3">Filters</div><button class="iconbtn" data-close aria-label="Close">${ico('x',20)}</button></div>
+  <div style="padding:18px 20px">${grp('role','Role',roles)}${grp('arr','Work arrangement',arrs)}${grp('ind','Industry',inds)}${grp('avail','Availability',avails)}${grp('exp','Experience',exps)}</div>
+  <div style="padding:14px 20px;border-top:1px solid var(--line);display:flex;gap:10px"><button class="btn btn-soft btn-md f1" data-sheetclear>Clear all</button><button class="btn btn-primary btn-md f1" data-close>Show results</button></div>
+ </div></div>`;
+ document.body.style.overflow='hidden';
+ root.querySelectorAll('[data-close]').forEach(e=>e.addEventListener('click',closeModal));
+ root.querySelectorAll('[data-sheetset]').forEach(e=>e.addEventListener('click',()=>{const[k,v]=e.getAttribute('data-sheetset').split(':');S.talent[k]=v;render();openTalentFilterSheet();}));
+ const cl=root.querySelector('[data-sheetclear]');if(cl)cl.addEventListener('click',()=>{S.talent={q:S.talent.q,role:'All',ind:'All',avail:'All',exp:'All',arr:'All'};render();openTalentFilterSheet();});
+ trapFocus(root.querySelector('.modal'));
+}
+
+/* ===== TALENT PROFILE ===== */
+function pageProfile(){
+ const c=cById(S.params.id);const conn=S.connected.has(c.id);const inv=S.invited.has(c.id);
+ const sim=CREATIVES.filter(x=>x.id!==c.id&&(x.role===c.role||x.ind.some(i=>c.ind.includes(i)))).slice(0,3);
+ const reviews=[['A founder','Beauty brand','Delivered beyond the brief and made the whole process calm. Would work with again in a heartbeat.'],['A founder','Fashion label','Fast, thoughtful, and genuinely invested in the brand. Rare.']];
+ return `<div class="wrap" style="padding-top:26px"><button class="link" style="color:var(--stone)" data-nav="talent">${ico('arrowL',16)} All talent</button></div>
+ <section class="wrap" style="padding-top:16px">
+  <div class="grid" id="profTop" style="grid-template-columns:1fr;gap:22px">
+   <div class="reveal">${ph(c.work[0],{ratio:'16/10',tone:c.tone,cls:'rounded-lg',shift:-1})}</div>
+   <div class="reveal card pad">
+    <div class="flex ic g3">${av(c.n,c.seed,58)}<div class="f1"><div class="flex ic g2"><div class="h2" style="font-size:1.6rem">${c.n}</div>${isVerified(c)?verifiedMark(15):''}</div><div class="muted">${c.role}</div></div></div>
+    <div class="flex wr g3 mt3 ic small"><span class="flex ic g1 muted">${ico('pin',15)} ${c.loc}</span><span class="flex ic g1 muted">${ico(arrIcon(c.arr),15)} ${c.arr}</span><span class="flex ic g1 muted">${ico('star',15)} ${c.rating} <span class="muted2">(${c.rev})</span></span></div>
+    ${c.travel?`<div class="xs muted mt1 flex ic g1">${ico('send',13)} ${c.travel}</div>`:''}
+    <div class="flex wr g3 mt3 xs muted" style="padding-top:14px;border-top:1px solid var(--line)">${[isVerified(c)?'Verified':null,'Responds '+respondsIn(c),repeatPct(c)+'% rehire',projectsDone(c)+' projects'].filter(Boolean).map((s,i)=>`${i?'<span class="s0" style="width:3px;height:3px;border-radius:999px;background:var(--line2);align-self:center"></span>':''}<span class="flex ic g1">${i===0&&isVerified(c)?ico('check',12):''}${s}</span>`).join('')}</div>
+    <div class="flex ic jb mt3" style="padding-top:14px;border-top:1px solid var(--line)"><span class="muted small">Typical rate</span><span class="h4">${c.rate}</span></div>
+    <div class="grid mt3" style="grid-template-columns:1fr 1fr;gap:10px">
+     <button class="btn btn-primary btn-md" data-connect="${c.id}">${conn?'✓ Sent':'Connect'}</button>
+     <button class="btn btn-primary btn-md" data-invite="${c.id}">${inv?'Invited ✓':'Invite to brand'}</button>
+    </div>
+    <div class="grid mt2" style="grid-template-columns:1fr 1fr;gap:10px">
+     <button class="btn btn-outline btn-sm" data-toast="Message sent to ${c.n.split(' ')[0]}">Message</button>
+     <button class="btn ${S.compare.has(c.id)?'btn-soft':'btn-outline'} btn-sm" data-cmp="${c.id}">${S.compare.has(c.id)?'✓ In compare':'Add to compare'}</button>
+    </div>
+   </div>
+  </div>
+ </section>
+ <section class="wrap" style="padding-top:40px;padding-bottom:24px">
+  <div class="grid" id="profBody" style="grid-template-columns:1fr;gap:38px">
+   <div style="display:flex;flex-direction:column;gap:34px">
+    <div class="reveal"><div class="h3 mb2">About</div><p class="lead muted" style="font-size:1.08rem">${c.bio}</p></div>
+    <div class="reveal"><div class="h3 mb3">Recent work</div><div class="grid" id="workGrid" style="grid-template-columns:1fr 1fr">${c.work.map((w,i)=>ph(w,{ratio:i%3===0?'4/5':'1/1',tone:c.tone,cls:'rounded',shift:[0,1,-1,1,-1,0][i%6]})).join('')}</div></div>
+    <div class="reveal"><div class="h3 mb3">Reviews</div><div style="display:flex;flex-direction:column;gap:14px">${reviews.map(rv=>`<div class="card pad"><div class="flex g1" style="color:var(--amber)">${Array(5).fill(ico('star',15)).join('')}</div><p class="mt2 small">${rv[2]}</p><div class="xs muted mt2">${rv[0]} · ${rv[1]}</div></div>`).join('')}</div></div>
+   </div>
+   <aside class="reveal"><div style="position:sticky;top:82px;display:flex;flex-direction:column;gap:18px">
+    <div class="card pad"><div class="eyebrow" style="color:var(--stone)">Selected clients</div><div class="flex wr" style="gap:10px 18px;margin-top:14px">${clientsFor(c).map(n=>`<span class="fw6" style="font-size:14px;letter-spacing:.02em;color:var(--charcoal)">${n}</span>`).join('<span style="color:var(--line2)">·</span>')}</div></div>
+    <div class="card pad"><div class="h4 mb2">Specialties</div><div class="flex wr g1">${c.skills.map(s=>`<span class="tag">${s}</span>`).join('')}</div>
+     <div class="h4 mt3 mb2">Industries</div><div class="flex wr g1">${c.ind.map(s=>`<span class="tag tag-line">${s}</span>`).join('')}</div></div>
+    ${c.social||c.campus?`<div class="card pad"><div class="h4 mb2">Audience & reach</div>${c.campus?`<div class="flex ic jb small" style="padding:8px 0;border-top:1px solid var(--line)"><span class="muted">Campus reach</span><span class="fw6">${c.campus}</span></div>`:''}${c.social?`<div class="flex ic jb small" style="padding:8px 0;border-top:1px solid var(--line)"><span class="muted">Followers</span><span class="fw6">${c.social.followers}</span></div><div class="flex ic jb small" style="padding:8px 0;border-top:1px solid var(--line)"><span class="muted">Engagement</span><span class="fw6">${c.social.eng}</span></div><div class="flex wr g1 mt2">${c.social.platforms.map(p=>`<span class="tag tag-accent">${p}</span>`).join('')}</div>`:''}</div>`:''}
+    ${c.creds?`<div class="card pad"><div class="h4 mb2">Credentials</div><div class="flex wr g2">${c.creds.map(x=>`<span class="tag tag-line">${ico('badge',12)} ${x}</span>`).join('')}</div></div>`:''}
+    ${c.moq?`<div class="card pad"><div class="h4 mb2">Production</div><div class="flex ic jb small" style="padding:8px 0;border-top:1px solid var(--line)"><span class="muted">Minimum order</span><span class="fw6">${c.moq}</span></div><div class="flex wr g1 mt2">${(c.capabilities||[]).map(x=>`<span class="tag">${x}</span>`).join('')}</div></div>`:''}
+    <div class="card pad"><div class="h4 mb2">Services & pricing</div>${c.services.map(s=>`<div class="flex ic jb small" style="padding:9px 0;border-top:1px solid var(--line)"><span>${s}</span><span class="muted2">${ico('dollar',13)}</span></div>`).join('')}<div class="flex ic jb mt2" style="padding-top:10px;border-top:1px solid var(--line)"><span class="small muted">From</span><span class="fw7">${c.rate}</span></div></div>
+    <div class="card pad"><div class="h4 mb2">Availability</div><p class="small muted">${c.avail}. ${c.exp} · ${c.rev} reviews.</p><button class="btn btn-primary btn-block btn-md mt3" data-invite="${c.id}">${inv?'Invited ✓':'Invite to your brand'}</button></div>
+   </div></aside>
+  </div>
+ </section>
+ <section style="background:var(--cream);border-top:1px solid var(--line)"><div class="wrap sec"><h2 class="h3 mb4">Similar talent</h2><div class="grid" style="grid-template-columns:1fr">${sim.map(x=>talentCard(x)).join('')}</div></div></section>`;
+}
+
+/* ===== APPLY MODAL ===== */
+function openApply(id,role){
+ const b=bById(id);const root=document.getElementById('modal-root');
+ const roleOpts=openRoles(b);
+ root.innerHTML=`<div class="mwrap"><div class="movl" data-close></div><div class="modal" id="applyModal" role="dialog" aria-label="Apply to ${b.n}"><form id="applyForm">
+  <div style="padding:20px 22px 0;display:flex;justify-content:space-between;align-items:flex-start"><div><div class="eyebrow">Apply to join</div><div class="h3 mt1">${b.n}</div><div class="xs muted">${b.founder.n} · ${b.ind}</div></div><button type="button" class="iconbtn" data-close aria-label="Close">${ico('x',20)}</button></div>
+  <div style="padding:18px 22px;display:flex;flex-direction:column;gap:16px">
+   <div><label class="field-l">Which role?</label><select class="select" id="apRole">${roleOpts.map(r=>`<option ${r===role?'selected':''}>${r}</option>`).join('')}</select></div>
+   <div><label class="field-l">Why are you interested?</label><textarea class="textarea" rows="2" required placeholder="What draws you to this brand?"></textarea></div>
+   <div><label class="field-l">Relevant experience</label><textarea class="textarea" rows="2" required placeholder="Similar brands or projects you've worked on."></textarea></div>
+   <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
+    <div><label class="field-l">Portfolio link</label><input class="input" placeholder="your-work.com"></div>
+    <div><label class="field-l">Availability</label><select class="select">${['Available now','In a week','In two weeks','Evenings'].map(x=>`<option>${x}</option>`).join('')}</select></div>
+   </div>
+   <div><label class="field-l">Proposed price <span class="muted2 fw5">(optional)</span></label><input class="input" placeholder="e.g. $2,500 for the project"></div>
+   <div><label class="field-l">Message to the founder <span class="muted2 fw5">(optional)</span></label><textarea class="textarea" rows="2" placeholder="Anything you'd like them to know."></textarea></div>
+  </div>
+  <div style="padding:16px 22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px"><span class="xs muted">Prototype — nothing is sent.</span><div class="flex g2"><button type="button" class="btn btn-soft btn-sm" data-close>Cancel</button><button type="submit" class="btn btn-primary btn-sm">Send application</button></div></div>
+ </form></div></div>`;
+ document.body.style.overflow='hidden';
+ root.querySelectorAll('[data-close]').forEach(e=>e.addEventListener('click',closeModal));
+ trapFocus(root.querySelector('.modal'));
+ root.querySelector('#applyForm').addEventListener('submit',ev=>{ev.preventDefault();S.applied.add(b.id);
+  root.querySelector('#applyModal').innerHTML=`<div style="padding:44px 30px;text-align:center"><div style="width:64px;height:64px;border-radius:999px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin:0 auto">${ico('check',30)}</div><h3 class="h2 mt4" style="font-size:1.6rem">Application sent 🎉</h3><p class="muted mt2 mx maxw">You applied to build with <b>${b.n}</b>. ${b.founder.n.split(' ')[0]} will review your work and reach out if it's a fit. Track it in My Studio.</p><div class="flex g2 jc mt4"><button class="btn btn-soft btn-sm" data-close>Keep exploring</button><button class="btn btn-primary btn-sm" data-close-dash>View my applications</button></div></div>`;
+  root.querySelectorAll('[data-close]').forEach(e=>e.addEventListener('click',closeModal));
+  const d=root.querySelector('[data-close-dash]');if(d)d.addEventListener('click',()=>{closeModal();S.tTab='applications';if(S.role==='guest')S.role='talent';go('talent-dashboard');});
+ });
+}
+function closeModal(){document.getElementById('modal-root').innerHTML='';document.body.style.overflow='';releaseFocus();}
+
+/* ===== FOUNDER DASHBOARD ===== */
+function pageFounderDash(){
+ const b=BRANDS[0];const t=S.fTab;
+ const tabs=[['overview','Overview'],['team','Launch Team'],['applicants','Applicants'],['saved','Saved Talent']];
+ const applicants=CREATIVES.slice(0,6);
+ const nextOpen=openRoles(b)[0];
+ const filledN=Object.keys(b.filled).length;const pct=Math.round(filledN/b.roles.length*100);
+ let body='';
+ if(t==='overview'){
+  const stat=(v,l,ico2)=>`<div class="card pad"><div class="flex ic jb"><span class="muted2">${ico(ico2,18)}</span></div><div class="h1 mt2" style="font-size:2rem">${v}</div><div class="small muted">${l}</div></div>`;
+  const acts=[['Alex Morgan applied to lead Brand Design','2h ago',31],['Devon Lee accepted your invite','1d ago',32],[b.n+' went live to talent','2d ago',1010]];
+  body=`<div class="card pad reveal" style="background:var(--ink);color:#fff;display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+    <div class="f1" style="min-width:200px"><div class="eyebrow" style="color:rgba(255,255,255,.72)">Your next move</div><div class="h3 mt1" style="color:#fff">Compare ${nextOpen||'your'}${nextOpen?'s':' team members'}</div><p class="small mt1" style="color:rgba(255,255,255,.65)">${(ROLE[nextOpen]||{}).d||'Keep building your team.'} Line up a few and pick the right fit.</p></div>
+    <div class="flex g2 wr"><button class="btn btn-accent btn-md" ${nextOpen?`data-viewmatches="${nextOpen}"`:'data-nav="talent"'}>View matches</button><button class="btn btn-md" style="background:rgba(255,255,255,.14);color:#fff" data-ftab="applicants">Applicants</button></div></div>
+   <div class="grid mt4" id="fstats" style="grid-template-columns:1fr 1fr">${stat(openRoles(b).length,'Open roles','briefcase')}${stat(applicants.length,'Applicants','users')}${stat(filledN,'On the team','check')}${stat(pct+'%','Team complete','trend')}</div>
+   <div class="card pad mt4 reveal"><div class="flex ic jb mb3"><div class="h4">Recent activity</div><button class="link" data-ftab="applicants">Applicants ${ico('arrow',13)}</button></div>
+    ${acts.map(a=>`<div class="flex ic g3" style="padding:11px 0;border-top:1px solid var(--line)">${av(String(a[2]),a[2],32)}<div class="f1 small">${a[0]}</div><span class="xs muted2">${a[1]}</span></div>`).join('')}</div>`;
+ } else if(t==='team'){
+  const groupsHtml=GROUP_ORDER.map(g=>{const rs=b.roles.filter(r=>roleGroup(r)===g);if(!rs.length)return '';
+   return `<div class="mb4"><div class="flex ic g2 mb3"><span class="eyebrow">${g}</span><span class="xs muted2">${rs.filter(r=>b.filled[r]).length}/${rs.length} set</span><span class="hairline f1"></span></div>
+    <div style="display:flex;flex-direction:column;gap:10px">${rs.map(r=>{const f=b.filled[r];const applied=r===nextOpen;const rec=matchesForRole(r).length;
+     return `<div class="card pad flex ic g3 wr"><span class="s0" style="width:42px;height:42px;border-radius:11px;background:${f?'var(--accent-soft)':'var(--cream2)'};color:${f?'var(--accent)':'var(--stone)'};display:grid;place-items:center">${f?ico('check',18):ico('briefcase',18)}</span>
+      <div class="f1" style="min-width:150px"><div class="fw7">${r}</div><div class="small muted">${f?'Selected · '+f[0]:(applied?rec+' recommended · 5 applied':rec+' recommended people')}</div></div>
+      ${f?statusPill('Connected'):(applied?statusPill('Review'):statusPill('Not started'))}
+      ${f?`<button class="btn btn-outline btn-sm s0" data-toast="Message sent to ${f[0].split(' ')[0]}">Message</button>`:`<button class="btn btn-accent btn-sm s0" data-viewmatches="${r}">View matches</button>`}
+     </div>`;}).join('')}</div></div>`;}).join('');
+  body=`<div class="flex ie jb wr g2 mb4"><div class="h3">${filledN} on the team · ${openRoles(b).length} open</div><button class="btn btn-soft btn-sm" data-nav="talent">Find talent</button></div>${groupsHtml}`;
+ } else if(t==='applicants'){
+  body=`<div class="h3 mb4">${applicants.length} people applied to ${b.n}</div><div style="display:flex;flex-direction:column;gap:12px">
+   ${applicants.map((c,i)=>{const sl=S.shortlisted.has(c.id);const dc=S.declined.has(c.id);const iv=S.invited.has(c.id);
+    return `<div class="card pad" style="${dc?'opacity:.5':''}"><div class="flex g3 wr ic">
+     <button data-profile="${c.id}" style="border-radius:12px;overflow:hidden;flex-shrink:0">${ph(c.work[0],{style:'width:64px;height:72px;border-radius:12px',tone:c.tone})}</button>
+     <div class="f1" style="min-width:160px"><div class="flex ic g2 wr"><span class="fw7">${c.n}</span><span class="tag" style="font-size:11px">${c.role}</span>${sl?statusPill('Shortlisted'):''}${iv?statusPill('Accepted'):''}</div><div class="xs muted line-clamp-1 mt1">${c.bio}</div><div class="flex ic g2 mt1 xs muted"><span>${ico('star',12)} ${c.rating}</span>·<span>${c.rate}</span>·<span>${c.avail.replace('Available ','')}</span></div></div>
+     <div class="flex g2 wr s0"><button class="btn btn-outline btn-sm" data-profile="${c.id}">Portfolio</button><button class="btn btn-soft btn-sm" data-short="${c.id}">${sl?'✓ Shortlisted':'Shortlist'}</button><button class="btn btn-primary btn-sm" data-invite="${c.id}">${iv?'Invited ✓':'Invite'}</button><button class="iconbtn" data-decline="${c.id}" aria-label="Decline" title="Decline">${ico('x',18)}</button></div>
+    </div></div>`;}).join('')}</div>`;
+ } else {
+  const list=[...S.savedTalent].map(cById);
+  body=list.length?`<div class="flex ie jb wr g2 mb4"><div class="h4">${list.length} saved · pick people to compare</div>${list.length>1?'<button class="btn btn-soft btn-sm" data-compareall>Compare saved</button>':''}</div><div class="grid" style="grid-template-columns:1fr 1fr">${list.map(c=>talentCard(c)).join('')}</div>`:`<div class="emptybox">${emptyArt()}<div class="h3 mt3">Your shortlist is empty</div><p class="muted mt2 mx maxw" style="max-width:340px">Save creatives you love with the heart icon and they will gather here for easy comparison.</p><button class="btn btn-primary btn-md mt4" data-nav="talent">Explore Talent</button></div>`;
+ }
+ return `<section class="wrap" style="padding:36px 22px 64px">
+  <div class="card" style="overflow:hidden;padding:0" >
+   <div style="position:relative">${ph(b.seed,{ratio:'21/7',tone:b.tone,scrim:1,shift:-1})}
+    <div style="position:absolute;left:22px;right:22px;bottom:18px;z-index:2;color:#fff"><div class="eyebrow" style="color:rgba(255,255,255,.85)">Brand Hub</div><div class="flex ic g2 wr" style="margin-top:4px"><div class="h1" style="color:#fff;font-size:2rem">${b.n}</div><span class="tag" style="background:rgba(255,255,255,.2);color:#fff">${b.stage}</span></div></div></div>
+   <div class="pad flex ic jb wr g2"><p class="small muted maxw">${b.one}</p><div class="flex g2"><button class="btn btn-outline btn-sm" data-open="${b.id}">View public page</button><button class="btn btn-primary btn-sm" data-nav="build">Start another brand</button></div></div>
+  </div>
+  <div class="mt4" style="overflow-x:auto"><div class="tabs">${tabs.map(x=>`<button class="tab ${t===x[0]?'on':''}" data-ftab="${x[0]}">${x[1]}</button>`).join('')}</div></div>
+  <div class="mt4">${body}</div>
+ </section>`;
+}
+
+/* ===== TALENT DASHBOARD ===== */
+function pageTalentDash(){
+ const me=CREATIVES[0];const t=S.tTab;
+ const tabs=[['recommended','Recommended'],['applications','Applications'],['saved','Saved Brands'],['profile','Profile']];
+ let body='';
+ if(t==='recommended'){
+  const rec=BRANDS.filter(b=>openRoles(b).some(r=>r.includes('Brand')||r.includes('Design')||r.includes('Creative')));
+  body=`<div class="grid mt1 mb4" style="grid-template-columns:1fr 1fr"><div class="card pad"><div class="flex ic jb"><span class="muted2">${ico('sparkles',18)}</span></div><div class="h1 mt2" style="font-size:1.7rem">${rec.length}</div><div class="small muted">Brands that fit your work</div></div><div class="card pad"><div class="flex ic jb"><span class="muted2">${ico(arrIcon(me.arr),18)}</span></div><div class="h1 mt2" style="font-size:1.7rem">${me.arr}</div><div class="small muted">Your current arrangement</div></div></div>
+   <div class="flex ic g2 mb3 small muted wr">Matched to your work: ${me.ind.map(x=>`<span class="tag">${x}</span>`).join('')}</div>
+   <div class="grid" style="grid-template-columns:1fr 1fr">${rec.map(b=>brandCard(b)).join('')}</div>`;
+ } else if(t==='applications'){
+  const apps=[[BRANDS[0],'Shortlisted'],[BRANDS[2],'Viewed'],[BRANDS[4],'Accepted'],[BRANDS[5],'Sent'],[BRANDS[3],'Not selected']];
+  body=`<div class="flex g2 wr mb4">${['Sent','Viewed','Shortlisted','Accepted','Not selected'].map(s=>statusPill(s)).join('')}</div>
+   <div style="display:flex;flex-direction:column;gap:12px">${apps.map(a=>`<div class="card pad flex ic g3 wr" style="${a[1]==='Not selected'?'opacity:.62':''}"><button data-open="${a[0].id}" style="border-radius:12px;overflow:hidden;flex-shrink:0" aria-label="${a[0].n}">${ph(a[0].seed,{style:'width:60px;height:60px',tone:a[0].tone,alt:a[0].n})}</button><div class="f1" style="min-width:140px"><div class="fw7">${a[0].n}</div><div class="small muted">${a[0].ind} · applied recently</div></div>${statusPill(a[1])}<button class="btn btn-outline btn-sm s0" data-open="${a[0].id}">View</button></div>`).join('')}</div>`;
+ } else if(t==='saved'){
+  const list=[...S.saved].map(bById);
+  body=list.length?`<div class="grid" style="grid-template-columns:1fr 1fr">${list.map(b=>brandCard(b)).join('')}</div>`:`<div class="emptybox">${emptyArt()}<div class="h3 mt3">No saved brands yet</div><p class="muted mt2 mx maxw" style="max-width:340px">Tap the heart on any brand to keep it here while you decide where to apply.</p><button class="btn btn-primary btn-md mt4" data-nav="explore">Discover brands</button></div>`;
+ } else {
+  body=`<div class="card pad"><div class="flex ic jb mb3"><div class="h4">Profile completeness</div><span class="fw7" style="color:var(--accent)">85%</span></div><div style="height:8px;background:var(--cream2);border-radius:999px;overflow:hidden"><div style="height:100%;width:85%;background:var(--accent)"></div></div><p class="small muted mt3">Add two more portfolio pieces to reach 100% and rank higher in founder searches.</p><button class="btn btn-outline btn-md mt3" data-profile="${me.id}">View my public profile</button></div>
+   <div class="card pad mt4"><div class="flex ic jb"><div class="h4">Current status</div><span class="status" style="color:var(--accent);background:var(--accent-soft)"><span class="d" style="background:var(--accent)"></span>${me.avail}</span></div>
+    <div class="flex ic jb mt3" style="padding-top:14px;border-top:1px solid var(--line)"><span class="muted small">Work arrangement</span><span class="small fw6">${me.arr}</span></div>
+    <div class="flex ic jb mt3" style="padding-top:14px;border-top:1px solid var(--line)"><span class="muted small">Typical rate</span><span class="h4">${me.rate}</span></div>
+    <div class="flex ic jb mt3" style="padding-top:14px;border-top:1px solid var(--line)"><span class="muted small">Open to</span><span class="small fw6">${me.ind.join(', ')}</span></div>
+    <button class="btn btn-outline btn-md mt3" data-toast="Availability updated">Update availability</button></div>
+   <div class="mt4"><div class="h4 mb3">Portfolio</div><div class="grid" id="workGrid" style="grid-template-columns:1fr 1fr">${me.work.slice(0,4).map((w,i)=>ph(w,{ratio:'1/1',tone:me.tone,cls:'rounded',alt:me.n+' work',shift:[0,1,-1,1][i%4]})).join('')}</div></div>`;
+ }
+ return `<section class="wrap" style="padding:36px 22px 64px">
+  <div class="flex ic g3 wr mb4">${av(me.n,me.seed,56)}<div class="f1"><div class="eyebrow">My Studio</div><h1 class="h1 mt1" style="font-size:1.9rem">Welcome back, ${me.n.split(' ')[0]}.</h1></div><button class="btn btn-outline btn-sm" data-profile="${me.id}">View profile</button></div>
+  <div style="overflow-x:auto"><div class="tabs">${tabs.map(x=>`<button class="tab ${t===x[0]?'on':''}" data-ttab="${x[0]}">${x[1]}</button>`).join('')}</div></div>
+  <div class="mt4">${body}</div>
+ </section>`;
+}
+
+/* ===== HOW ===== */
+function pageHow(){
+ return `<section class="wrap" style="padding-top:44px">
+  <div class="eyebrow reveal">How it works</div><h1 class="h1 reveal mt2">From idea to launch, together.</h1>
+  <p class="lead reveal mt2 maxw">Building a brand takes a lot of different people. Launchory helps you find them and work as a team.</p>
+ </section>
+ <section class="wrap" style="padding-top:36px;padding-bottom:24px">
+  ${STEPS.map((s,i)=>`<div class="reveal card" style="overflow:hidden;margin-bottom:20px"><div class="grid" style="grid-template-columns:1fr;align-items:stretch" id="howrow${i}"><div class="pad" style="padding:44px;display:flex;flex-direction:column;justify-content:center"><div class="fw7" style="font-size:15px;letter-spacing:.04em;color:var(--accent)">0${i+1}</div><h2 class="h2 mt3" style="font-size:clamp(1.5rem,2.4vw,2rem)">${s[0]}</h2><p class="lead muted mt3">${s[1]}</p></div>${ph(600+i,{ratio:'16/10',tone:['fashion','beauty','food','music'][i],shift:-1})}</div></div>`).join('')}
+ </section>
+ <section class="wrap sec"><div class="card tc" style="padding:48px 24px;background:var(--ink);color:#fff;border:none"><h2 class="h2" style="color:#fff">Ready to build your idea?</h2><div class="flex g2 jc wr mt4"><button class="btn btn-accent btn-lg" data-nav="build">Start Building</button><button class="btn btn-lg" data-nav="explore" style="background:rgba(255,255,255,.14);color:#fff">Explore Brands</button></div></div></section>`;
+}
+
+/* ===== LOGIN ===== */
+/* ===== EARLY ACCESS ===== premium, invitation-led onboarding */
+function accessCard(role,title,desc,icon){return `<button class="card hov" data-access="${role}" style="padding:24px;display:flex;align-items:flex-start;gap:18px;text-align:left">
+  <div style="width:52px;height:52px;border-radius:14px;background:${role==='founder'?'var(--accent)':'var(--ink)'};color:#fff;display:grid;place-items:center;flex-shrink:0">${ico(icon,24)}</div>
+  <div class="f1"><div class="h4" style="font-size:1.18rem">${title}</div><p class="small muted mt2" style="line-height:1.55">${desc}</p></div>
+  <span class="s0" style="color:var(--stone2);margin-top:4px">${ico('arrow',18)}</span>
+ </button>`;}
+function accessForm(role){
+ const inds=INDUSTRIES.filter(i=>i.id!=='other').map(i=>i.name).concat('Other');
+ const founder=role==='founder';
+ const fields=founder?`
+   <div><label class="field-l" for="afName">Full name</label><input id="afName" name="name" class="input" required placeholder="Your name"></div>
+   <div><label class="field-l" for="afEmail">Email</label><input id="afEmail" name="email" type="email" class="input" required placeholder="you@email.com"></div>
+   <div><label class="field-l" for="afCompany">Company or idea name <span class="muted2 fw5">(optional)</span></label><input id="afCompany" name="company" class="input" placeholder="e.g. Kettle & Koto"></div>
+   <div><label class="field-l" for="afInd">Industry</label><select id="afInd" name="industry" class="select">${inds.map(x=>`<option>${x}</option>`).join('')}</select></div>
+   <div><label class="field-l" for="afWhat">What are you building?</label><textarea id="afWhat" name="detail" class="textarea" rows="3" required placeholder="A sentence or two about your idea."></textarea></div>`
+  :`
+   <div><label class="field-l" for="afName">Full name</label><input id="afName" name="name" class="input" required placeholder="Your name"></div>
+   <div><label class="field-l" for="afEmail">Email</label><input id="afEmail" name="email" type="email" class="input" required placeholder="you@email.com"></div>
+   <div><label class="field-l" for="afProf">Profession</label><input id="afProf" name="profession" class="input" required placeholder="e.g. Brand Designer, Photographer"></div>
+   <div><label class="field-l" for="afPort">Portfolio website <span class="muted2 fw5">(optional)</span></label><input id="afPort" name="portfolio" class="input" placeholder="your-work.com"></div>
+   <div><label class="field-l" for="afSocial">Instagram or LinkedIn</label><input id="afSocial" name="social" class="input" required placeholder="@handle or profile link"></div>
+   <div><label class="field-l" for="afInd">Primary industry</label><select id="afInd" name="industry" class="select">${inds.map(x=>`<option>${x}</option>`).join('')}</select></div>`;
+ return `<form id="accessForm" data-accessrole="${role}" novalidate style="width:100%;max-width:460px">
+   <button type="button" class="link mb4" style="color:var(--stone)" data-accessback>${ico('arrowL',16)} Back</button>
+   <div class="eyebrow">${founder?'Founder application':'Creative application'}</div>
+   <h1 class="h2 mt2" style="font-size:clamp(1.7rem,3vw,2.3rem)">${founder?'Join as an Early Founder.':'Join as an Early Creative.'}</h1>
+   <p class="muted mt3">${founder?"Tell us what you're building — we'll reach out with your invitation before launch.":"Tell us about your work — we'll reach out with your invitation before launch."}</p>
+   <div class="mt5" style="display:flex;flex-direction:column;gap:16px">${fields}</div>
+   <div id="accessErr" role="alert" aria-live="assertive" style="display:none;margin-top:16px;background:#F7EBE7;color:var(--accent-ink);border:1px solid #E7C9BF;border-radius:10px;padding:11px 14px;font-size:13.5px;font-weight:500"></div>
+   <button type="submit" class="btn btn-primary btn-block btn-lg mt5" id="accessSubmit">${founder?'Join as an Early Founder':'Join as an Early Creative'}</button>
+   <p class="xs muted2 tc mt3">We'll only use your details to send your invitation.</p>
+ </form>`;
+}
+function pageLogin(){
+ const a=S.access;
+ const visual=`<div style="position:relative;min-height:200px;display:none" id="loginVisual">${ph(701,{style:'position:absolute;inset:0',tone:'warm',shift:-1})}
+   <div style="position:absolute;inset:0;background:linear-gradient(155deg,rgba(20,20,15,.3),rgba(20,20,15,.66));z-index:1"></div>
+   <div style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:52px;color:#fff">
+    <button class="brand" data-nav="home" style="color:#fff"><span class="brand-mark">${logoMark(16)}</span>Launchory</button>
+    <div style="max-width:440px"><div class="eyebrow" style="color:rgba(255,255,255,.72)">Early Access</div><h2 class="mt3" style="color:#fff;font-weight:700;letter-spacing:-.028em;line-height:1.08;font-size:clamp(1.9rem,2.7vw,2.7rem)">Where the next generation of brands begins.</h2><p class="mt4" style="color:rgba(255,255,255,.82);font-size:1.08rem;line-height:1.6">A curated community of founders and the creative people who bring their ideas to life.</p></div>
+    <span class="xs" style="color:rgba(255,255,255,.62)">By invitation · Launchory 2026</span>
+   </div></div>`;
+ let panel;
+ if(a.step==='done'||a.step==='already'){
+  const dup=a.step==='already';
+  panel=`<div style="width:100%;max-width:470px;text-align:center">
+    <div style="width:66px;height:66px;border-radius:999px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin:0 auto">${ico('check',30)}</div>
+    <h1 class="h1 mt4" style="font-size:clamp(2.2rem,4vw,3rem)">You're in.</h1>
+    <p class="lead muted mt3 mx">${dup?"You're already on the list — we have your details. Thanks for being part of Launchory's founding community; we'll keep you updated as we begin welcoming early founders and creatives.":"Thanks for joining Launchory's founding community. We'll review your application and keep you updated as we begin welcoming early founders and creatives."}</p>
+    <button class="btn btn-outline btn-md mt5" data-nav="home">Back to Launchory</button>
+   </div>`;
+ } else if(a.step==='form'){
+  panel=accessForm(a.role);
+ } else {
+  panel=`<div style="width:100%;max-width:540px">
+    <div class="brand mb5" style="justify-content:flex-start"><span class="brand-mark">${logoMark(16)}</span>Launchory</div>
+    <h1 class="h1" style="font-size:clamp(2.1rem,3.6vw,3.1rem)">Build your business with the right people.</h1>
+    <p class="lead muted mt3">Join the first generation of founders and creatives building the next wave of brands.</p>
+    <div class="mt5" style="display:flex;flex-direction:column;gap:14px">
+      ${accessCard('founder',"I'm a Founder",'Build your company by finding the right designers, marketers, developers, manufacturers, photographers, and specialists.','sparkles')}
+      ${accessCard('creative',"I'm a Creative",'Showcase your work, set your own pricing, and get discovered by founders building new businesses.','briefcase')}
+    </div>
+    <p class="xs muted2 mt5">Just exploring? <button class="link" style="display:inline-flex;font-size:12.5px" data-nav="home">Preview the product</button></p>
+   </div>`;
+ }
+ return `<div class="grid" id="loginGrid" style="grid-template-columns:1fr;min-height:100vh;gap:0">
+   ${visual}
+   <div style="display:flex;align-items:center;justify-content:center;padding:56px 26px;min-height:100vh">${panel}</div>
+ </div>`;
+}
+
+/* ===== RENDER ===== */
+function pageHTML(){switch(S.route){
+ case 'home':return pageHome();case 'build':return pageBuild();case 'explore':return pageExplore();
+ case 'project':return pageBrand();case 'talent':return pageTalent();case 'profile':return pageProfile();
+ case 'founder-dashboard':return pageFounderDash();case 'talent-dashboard':return pageTalentDash();
+ case 'how':return pageHow();case 'login':return pageLogin();default:return pageHome();}}
+function render(){const app=document.getElementById('app');
+ if(S.route==='login')app.innerHTML=pageLogin();else app.innerHTML=navbar()+`<main id="main">${pageHTML()}</main>`+footer();
+ after();}
+function after(){
+ const els=document.querySelectorAll('.reveal');
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ // Below-fold elements reveal on scroll; a gentle stagger applies within each group.
+ const io=new IntersectionObserver(es=>{let k=0;es.forEach(e=>{if(e.isIntersecting){const el=e.target;if(!reduce)el.style.transitionDelay=(Math.min(k++,6)*70)+'ms';el.classList.add('in');io.unobserve(el);}});},{threshold:0.06});
+ els.forEach(el=>io.observe(el));
+ // Above-fold: soft staggered entrance on load.
+ requestAnimationFrame(()=>{let k=0;els.forEach(el=>{if(el.getBoundingClientRect().top<innerHeight+40){if(!reduce)el.style.transitionDelay=(Math.min(k++,8)*65)+'ms';el.classList.add('in');}});});
+ // Early Access form
+ const af=document.getElementById('accessForm');if(af)af.addEventListener('submit',submitAccess);
+ const nav=document.getElementById('nav');if(nav){const on=()=>nav.classList.toggle('scrolled',scrollY>6);on();addEventListener('scroll',on,{passive:true});}
+ const mb=document.getElementById('mobBtn');if(mb)mb.addEventListener('click',()=>{const m=document.getElementById('mobMenu');const o=m.style.display!=='none';m.style.display=o?'none':'flex';mb.innerHTML=o?ico('menu',22):ico('x',22);});
+ // responsive grid tweaks via matchMedia-ish through CSS handled below by classlist
+ applyResponsive();
+ // hero
+ const ha=document.getElementById('heroAdd');if(ha)ha.addEventListener('click',()=>{const pool=['Copywriter','Web Designer','Videographer','Influencer Marketing Specialist','Retail Consultant'];const avail=pool.filter(r=>!S.heroRoles.includes(r));if(!avail.length){toast('That\'s a full team!');return;}S.heroRoles.push(avail[0]);renderHeroRoles();toast('Added '+avail[0]);});
+ // explore
+ if(S.route==='explore'){
+  const rr=()=>{const box=document.getElementById('expResults');if(box)box.innerHTML=brandResults();bindResultCards();};
+  bind('#expSearch','input',e=>{S.explore.q=e.target.value;rr();});
+  bindChange('#expInd',v=>{S.explore.ind=v;render();});bindChange('#expRole',v=>{S.explore.role=v;render();});bindChange('#expStage',v=>{S.explore.stage=v;render();});
+  document.querySelectorAll('[data-rmchip]').forEach(e=>e.addEventListener('click',()=>{S.explore[e.getAttribute('data-rmchip')]='All';render();}));
+  const cb=document.getElementById('clearBF');if(cb)cb.addEventListener('click',()=>{S.explore={q:'',ind:'All',role:'All',stage:'All'};render();});
+ }
+ // talent
+ if(S.route==='talent'){
+  const rr=()=>{const box=document.getElementById('tResults');if(box)box.innerHTML=talentResults();bindResultCards();};
+  bind('#tSearch','input',e=>{S.talent.q=e.target.value;rr();});
+  bindChange('#tRole',v=>{S.talent.role=v;render();});bindChange('#tArr',v=>{S.talent.arr=v;render();});bindChange('#tInd',v=>{S.talent.ind=v;render();});bindChange('#tAvail',v=>{S.talent.avail=v;render();});bindChange('#tExp',v=>{S.talent.exp=v;render();});
+  document.querySelectorAll('[data-rmtchip]').forEach(e=>e.addEventListener('click',()=>{S.talent[e.getAttribute('data-rmtchip')]='All';render();}));
+  const fb=document.getElementById('tFilterBtn');if(fb)fb.addEventListener('click',openTalentFilterSheet);
+  const cb=document.getElementById('clearTF');if(cb)cb.addEventListener('click',()=>{S.talent={q:'',role:'All',ind:'All',avail:'All',exp:'All',arr:'All'};render();});
+ }
+ // build wizard
+ if(S.route==='build'){
+  const b=S.build;
+  const nx=document.getElementById('wizNext');
+  if(nx)nx.addEventListener('click',()=>{
+   if(b.step===0){if(!b.cat)return;b.step=1;render();}
+   else if(b.step===1){readIdea();b.step=2;render();
+    const ms=window.matchMedia('(prefers-reduced-motion: reduce)').matches?10:1700;
+    setTimeout(()=>{const cat=indById(b.cat);S.team=cat.team.map(r=>({role:r,on:true}));b.step=3;render();},ms);}
+   else if(b.step===3){if(S.role==='guest')S.role='founder';go('founder-dashboard');}
+  });
+  const bk=document.getElementById('wizBack');if(bk)bk.addEventListener('click',()=>{if(b.step===1){readIdea();b.step=0;}else if(b.step===3){b.step=1;}render();});
+  document.querySelectorAll('[data-pickcat]').forEach(e=>e.addEventListener('click',()=>{b.cat=e.getAttribute('data-pickcat');render();}));
+  document.querySelectorAll('[data-toggleteam]').forEach(e=>e.addEventListener('click',()=>{const r=e.getAttribute('data-toggleteam');const it=S.team.find(x=>x.role===r);if(it)it.on=!it.on;render();}));
+  const ar=document.getElementById('addRoleBtn');if(ar)ar.addEventListener('click',openAddRole);
+ }
+ if(S.route==='founder-dashboard'){document.querySelectorAll('[data-ftab]').forEach(e=>e.addEventListener('click',()=>{S.fTab=e.getAttribute('data-ftab');render();}));
+  document.querySelectorAll('[data-short]').forEach(e=>e.addEventListener('click',()=>{const id=e.getAttribute('data-short');S.shortlisted.has(id)?S.shortlisted.delete(id):S.shortlisted.add(id);render();toast(S.shortlisted.has(id)?'Shortlisted':'Removed');}));
+  document.querySelectorAll('[data-decline]').forEach(e=>e.addEventListener('click',()=>{S.declined.add(e.getAttribute('data-decline'));render();toast('Applicant declined');}));}
+ if(S.route==='talent-dashboard')document.querySelectorAll('[data-ttab]').forEach(e=>e.addEventListener('click',()=>{S.tTab=e.getAttribute('data-ttab');render();}));
+ if(S.route==='project')document.querySelectorAll('[data-expand]').forEach(e=>e.addEventListener('click',()=>{const i=e.getAttribute('data-expand');const d=document.getElementById('rd'+i);const card=document.getElementById('role'+i);if(!d)return;const wasHidden=d.hidden;d.hidden=!wasHidden;e.setAttribute('aria-expanded',String(wasHidden));if(card)card.classList.toggle('open',wasHidden);}));
+ compareTray();
+ bindResultCards();
+}
+function readIdea(){const g=id=>document.getElementById(id);if(g('bName'))S.build.name=g('bName').value;if(g('bIdea'))S.build.idea=g('bIdea').value;if(g('bStage'))S.build.stage=g('bStage').value;if(g('bBudget'))S.build.budget=g('bBudget').value;if(g('bTime'))S.build.timeline=g('bTime').value;}
+function openAddRole(){
+ const have=S.team.map(t=>t.role);const avail=Object.keys(ROLE).filter(r=>!have.includes(r));
+ const root=document.getElementById('modal-root');
+ root.innerHTML=`<div class="mwrap"><div class="movl" data-close></div><div class="modal" role="dialog" aria-modal="true" aria-label="Add role"><div class="flex ic jb" style="padding:18px 20px;border-bottom:1px solid var(--line)"><div class="h3">Add a role</div><button class="iconbtn" data-close aria-label="Close">${ico('x',20)}</button></div>
+  <div style="padding:12px 16px;max-height:60vh;overflow-y:auto">${avail.map(r=>`<button class="flex ic g3 f1" data-addrole="${r}" style="width:100%;text-align:left;padding:12px;border-radius:12px" onmouseover="this.style.background='var(--cream)'" onmouseout="this.style.background='transparent'"><span class="s0" style="width:34px;height:34px;border-radius:10px;background:var(--cream2);color:var(--stone);display:grid;place-items:center">${ico('briefcase',16)}</span><div class="f1"><div class="fw6 small">${r}</div><div class="xs muted">${ROLE[r].d}</div></div><span class="tag tag-line">${ROLE[r].p}</span></button>`).join('')}</div></div></div>`;
+ document.body.style.overflow='hidden';
+ root.querySelectorAll('[data-close]').forEach(e=>e.addEventListener('click',closeModal));
+ root.querySelectorAll('[data-addrole]').forEach(e=>e.addEventListener('click',()=>{S.team.push({role:e.getAttribute('data-addrole'),on:true});closeModal();render();toast('Role added');}));
+ trapFocus(root.querySelector('.modal'));
+}
+function applyResponsive(){
+ const w=innerWidth;const set=(id,cols)=>{const el=document.getElementById(id);if(el)el.style.gridTemplateColumns=cols;};
+ // 2-up / 3-up responsive grids
+ if(S.route==='home'){set('herogrid',w>=960?'1.05fr .95fr':'1fr');set('indgrid',w>=760?'1fr 1fr 1fr':(w>=520?'1fr 1fr':'1fr'));set('stepsgrid',w>=760?'repeat(4,1fr)':'1fr 1fr');}
+ set('footgrid',w>=860?'1.3fr 1fr':'1fr');
+ if(S.route==='build'){set('bindgrid',w>=560?'1fr 1fr 1fr':'1fr 1fr');}
+ if(S.route==='explore'){const r=document.getElementById('expResults');if(r&&r.firstElementChild)r.firstElementChild.style.gridTemplateColumns=w>=920?'repeat(3,1fr)':(w>=620?'1fr 1fr':'1fr');}
+ if(S.route==='project'){set('brandTop',w>=920?'1.4fr 1fr':'1fr');set('brandBody',w>=920?'1.7fr 1fr':'1fr');}
+ if(S.route==='talent'){const g=document.getElementById('talentGridInner');if(g)g.style.gridTemplateColumns=w>=920?'repeat(3,1fr)':(w>=560?'1fr 1fr':'1fr');}
+ if(S.route==='profile'){set('profTop',w>=860?'1.5fr 1fr':'1fr');set('profBody',w>=860?'1.6fr 1fr':'1fr');set('workGrid',w>=620?'repeat(3,1fr)':'1fr 1fr');}
+ if(S.route==='founder-dashboard'){set('fstats',w>=620?'repeat(4,1fr)':'1fr 1fr');set('msgGrid',w>=760?'.85fr 1.4fr':'1fr');}
+ if(S.route==='talent-dashboard'){const gs=document.querySelectorAll('#main .grid');}
+ if(S.route==='login')set('loginGrid',w>=960?'1.05fr .95fr':'1fr');
+ const lv=document.getElementById('loginVisual');if(lv)lv.style.display=w>=960?'block':'none';
+ if(S.route==='how'){STEPS.forEach((_,i)=>set('howrow'+i,w>=760?'1fr 1fr':'1fr'));}
+}
+addEventListener('resize',()=>{applyResponsive();});
+function bind(sel,ev,fn){const el=document.querySelector(sel);if(el)el.addEventListener(ev,fn);}
+function bindChange(sel,fn){const el=document.querySelector(sel);if(el)el.addEventListener('change',e=>fn(e.target.value));}
+function bindResultCards(){/* delegation handles clicks; nothing needed but keeps hook */}
+
+/* ===== FOCUS MANAGEMENT (modals / drawers) ===== */
+let _lastFocus=null,_trapEl=null,_trapHandler=null;
+const FOCUSABLE='a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+function trapFocus(el){if(!el)return;_lastFocus=document.activeElement;_trapEl=el;
+ const first=el.querySelector(FOCUSABLE);if(first)setTimeout(()=>{try{first.focus();}catch(_){}},30);
+ _trapHandler=e=>{if(e.key!=='Tab')return;const f=[...el.querySelectorAll(FOCUSABLE)].filter(n=>n.offsetParent!==null);if(!f.length)return;
+  const a=f[0],b=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();b.focus();}
+  else if(!e.shiftKey&&document.activeElement===b){e.preventDefault();a.focus();}};
+ document.addEventListener('keydown',_trapHandler);}
+function releaseFocus(){if(_trapHandler){document.removeEventListener('keydown',_trapHandler);_trapHandler=null;}_trapEl=null;
+ if(_lastFocus&&_lastFocus.focus){try{_lastFocus.focus();}catch(_){}}_lastFocus=null;}
+
+/* ===== EARLY ACCESS submit ===== */
+const CFG=()=>window.LAUNCHORY_CONFIG||{};
+const validEmail=e=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+function accessError(msg){
+ const el=document.getElementById('accessErr');
+ if(el){el.textContent=msg;el.style.display=msg?'block':'none';}
+}
+function validateAccess(role,d){
+ if(!d.name||d.name.length<2)return['afName','Please enter your full name.'];
+ if(!validEmail(d.email))return['afEmail','Please enter a valid email address.'];
+ if(role==='founder'){
+  if(!d.detail||d.detail.length<4)return['afWhat','Tell us a little about what you’re building.'];
+ }else{
+  if(!d.profession||d.profession.length<2)return['afProf','Please enter your profession.'];
+  if(!d.social||d.social.length<2)return['afSocial','Add an Instagram or LinkedIn so founders can find you.'];
+ }
+ return null;
+}
+async function submitAccess(ev){
+ ev.preventDefault();
+ const f=ev.currentTarget;const role=f.getAttribute('data-accessrole');
+ const d={};new FormData(f).forEach((v,k)=>{d[k]=String(v).trim();});
+ accessError('');
+ const bad=validateAccess(role,d);
+ if(bad){const inp=document.getElementById(bad[0]);if(inp)inp.focus();accessError(bad[1]);return;}
+ const btn=document.getElementById('accessSubmit');
+ if(btn){btn.disabled=true;btn.dataset.label=btn.textContent;btn.innerHTML='<span class="btnspin"></span> Joining…';}
+ const record={
+  role,name:d.name,email:d.email.toLowerCase(),
+  company:d.company||null,industry:d.industry||null,detail:d.detail||null,
+  profession:d.profession||null,portfolio:d.portfolio||null,social:d.social||null
+ };
+ const cfg=CFG();
+ // Persist to Supabase when configured; otherwise run in preview mode.
+ if(cfg.SUPABASE_URL&&cfg.SUPABASE_ANON_KEY){
+  try{
+   const res=await fetch(`${cfg.SUPABASE_URL}/rest/v1/early_access`,{
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':cfg.SUPABASE_ANON_KEY,
+     'Authorization':`Bearer ${cfg.SUPABASE_ANON_KEY}`,'Prefer':'return=minimal'},
+    body:JSON.stringify(record)
+   });
+   if(res.status===201||res.status===200){track('early_access_submit',{role});S.access.step='done';render();return;}
+   if(res.status===409){track('early_access_duplicate',{role});S.access.step='already';render();return;} // duplicate email
+   throw new Error('status '+res.status);
+  }catch(err){
+   if(btn){btn.disabled=false;btn.textContent=btn.dataset.label||'Join';}
+   accessError('Something went wrong on our end. Please try again in a moment.');
+   return;
+  }
+ }
+ // Preview mode (no database configured): confirm without persisting.
+ track('early_access_submit',{role,preview:true});
+ S.access.step='done';render();
+}
+
+/* ===== ANALYTICS (config-gated; no-op until keys are set) ===== */
+function track(event,props){
+ try{
+  if(window.gtag)window.gtag('event',event,props||{});
+  if(window.posthog)window.posthog.capture(event,props||{});
+ }catch(_){}
+}
+function initAnalytics(){
+ const c=CFG();
+ if(c.GA_ID){
+  const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+c.GA_ID;document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
+  window.gtag('js',new Date());window.gtag('config',c.GA_ID);
+ }
+ if(c.POSTHOG_KEY){
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  window.posthog.init(c.POSTHOG_KEY,{api_host:c.POSTHOG_HOST||'https://us.i.posthog.com',capture_pageview:true});
+ }
+}
+
+/* toast */
+let tT=null;function toast(m){const r=document.getElementById('toast-root');r.innerHTML=`<div class="toast" role="status" aria-live="polite"><div class="toast-in">${ico('check',16)} ${m}</div></div>`;clearTimeout(tT);tT=setTimeout(()=>r.innerHTML='',2200);}
+
+/* delegation */
+document.addEventListener('click',e=>{const q=s=>e.target.closest(s);let el;
+ /* specific actions first (they live inside clickable cards) */
+ if(el=q('[data-save]')){e.stopPropagation();const id=el.getAttribute('data-save');S.saved.has(id)?S.saved.delete(id):S.saved.add(id);toast(S.saved.has(id)?'Saved to your brands':'Removed');render();return;}
+ if(el=q('[data-savet]')){e.stopPropagation();const id=el.getAttribute('data-savet');S.savedTalent.has(id)?S.savedTalent.delete(id):S.savedTalent.add(id);toast(S.savedTalent.has(id)?'Saved talent':'Removed');render();return;}
+ if(el=q('[data-cmp]')){e.stopPropagation();e.preventDefault();toggleCompare(el.getAttribute('data-cmp'));return;}
+ if(el=q('[data-viewmatches]')){e.stopPropagation();openMatchDrawer(el.getAttribute('data-viewmatches'));return;}
+ if(el=q('[data-compareall]')){e.stopPropagation();S.compare=new Set([...S.savedTalent].slice(0,3));render();openCompare();return;}
+ if(el=q('[data-apply]')){e.stopPropagation();openApply(el.getAttribute('data-apply'),el.getAttribute('data-role'));return;}
+ if(el=q('[data-invite]')){e.stopPropagation();const id=el.getAttribute('data-invite');S.invited.add(id);try{el.textContent='Invited ✓';el.classList.remove('btn-accent');el.classList.add('btn-soft');}catch(_){}toast('Invited '+cById(id).n.split(' ')[0]+' to your brand');render();return;}
+ if(el=q('[data-connect]')){e.stopPropagation();S.connected.add(el.getAttribute('data-connect'));toast('Connection request sent');render();return;}
+ if(el=q('[data-heroremove]')){e.stopPropagation();const r=el.getAttribute('data-heroremove');if(S.heroRoles.length<=3){toast('Keep at least 3 roles');return;}S.heroRoles=S.heroRoles.filter(x=>x!==r);renderHeroRoles();return;}
+ if(el=q('[data-toast]')){e.stopPropagation();toast(el.getAttribute('data-toast'));return;}
+ if(el=q('[data-access]')){S.access={step:'form',role:el.getAttribute('data-access')};render();return;}
+ if(el=q('[data-accessback]')){S.access.step='choose';render();return;}
+ /* container navigation */
+ if(el=q('[data-build]')){S.build={step:1,cat:el.getAttribute('data-build'),name:'',idea:'',stage:'Concept',budget:'$5k–$10k',timeline:'3 months'};S.team=[];go('build');return;}
+ if(el=q('[data-open]')){go('project',{id:el.getAttribute('data-open')});return;}
+ if(el=q('[data-profile]')){go('profile',{id:el.getAttribute('data-profile')});return;}
+ if(el=q('[data-navx]')){const[n,p]=el.getAttribute('data-navx').split(':');go(n,p?{id:p}:{});return;}
+ if(el=q('[data-nav]')){go(el.getAttribute('data-nav'));return;}
+});
+/* keyboard: Enter/Space on card role=button */
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role="button"][data-open],[role="button"][data-profile]')){e.preventDefault();e.target.click();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeDrawer();}});
+initAnalytics();
+render();
+</script>
+</body>
+</html>
