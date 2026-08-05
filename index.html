@@ -612,15 +612,16 @@ const S={route:'home',params:{},role:'guest',fTab:'overview',tTab:'recommended',
  explore:{q:'',ind:'All',role:'All',stage:'All'}, talent:{q:'',role:'All',ind:'All',avail:'All',exp:'All',arr:'All'},
  heroRoles:['Brand Designer','Packaging Designer','Food Scientist','Product Photographer','Social Media Creator','Shopify Developer','Marketing Specialist'],
  access:{step:'choose',role:'founder'}};
-function go(r,p){if(r==='login'&&S.route!=='login')S.access={step:'choose',role:'founder'};S.route=r;S.params=p||{};window.scrollTo({top:0,behavior:'auto'});render();}
+const GATED=new Set(['build','explore','talent','project','profile','founder-dashboard','talent-dashboard']);
+function go(r,p){if(GATED.has(r)){r='login';p=null;}if(r==='login'&&S.route!=='login')S.access={step:'choose',role:'founder'};S.route=r;S.params=p||{};window.scrollTo({top:0,behavior:'auto'});render();}
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
 /* ===== NAV / FOOTER ===== */
 function navbar(){
- const links=[['Explore Brands','explore'],['Explore Talent','talent'],['How it works','how']];
+ const links=[['How it works','how']];
  const dash=S.role==='talent'?'talent-dashboard':'founder-dashboard';
  const right=S.role==='guest'
-  ? `<button class="nav-link" data-nav="login">Log in</button><button class="btn btn-primary btn-sm" data-nav="build">Start Building</button>`
+  ? `<button class="btn btn-primary btn-sm" data-nav="login">Join the Waitlist</button>`
   : `<button class="nav-link" data-nav="${dash}">${S.role==='talent'?'My Studio':'Brand Hub'}</button><button class="iconbtn" data-nav="${dash}" aria-label="Dashboard">${av(S.role==='talent'?'Alex Morgan':'Kennedy Owen',S.role==='talent'?31:1010,32)}</button>`;
  return `<header class="nav" id="nav"><div class="wrap"><div class="nav-in">
   <button class="brand" data-nav="home" aria-label="Launchory home"><span class="brand-mark">${logoMark(16)}</span>Launchory</button>
@@ -631,20 +632,20 @@ function navbar(){
  <div id="mobMenu" class="hide-lg" style="display:none;flex-direction:column;border-top:1px solid var(--line);background:var(--paper)">
   <div class="wrap" style="padding:12px 22px 18px;display:flex;flex-direction:column;gap:2px">
    ${links.map(l=>`<button class="nav-link" style="text-align:left;padding:12px" data-nav="${l[1]}">${l[0]}</button>`).join('')}
-   <button class="nav-link" style="text-align:left;padding:12px" data-nav="login">Log in</button>
-   <button class="btn btn-primary btn-md mt2" data-nav="build">Start Building</button>
+   
+   <button class="btn btn-primary btn-md mt2" data-nav="login">Join the Waitlist</button>
   </div>
  </div></header>`;
 }
 function footer(){
- const cols=[['Product',[['Explore Brands','explore'],['Explore Talent','talent'],['Start Building','build'],['How it works','how']]],
-  ['Founders',[['Start Building','build'],['Brand Hub','founder-dashboard']]],
+ const cols=[['Product',[['Explore Brands','explore'],['Explore Talent','talent'],['Join the Waitlist','login'],['How it works','how']]],
+  ['Founders',[['Join the Waitlist','login'],['Brand Hub','founder-dashboard']]],
   ['Creatives',[['Explore Brands','explore'],['My Studio','talent-dashboard'],['A profile','profile:alex-morgan']]]];
  return `<footer class="footer"><div class="wrap" style="padding:52px 22px 36px">
   <div class="grid" style="grid-template-columns:1fr;gap:36px" id="footgrid">
    <div style="max-width:320px"><div class="brand"><span class="brand-mark">${logoMark(16)}</span>Launchory</div>
     <p class="small muted mt3">Build your idea with the right people. Tell us what you're creating and we'll help you find the team to make it real.</p>
-    <div class="flex g2 mt4"><button class="btn btn-primary btn-sm" data-nav="build">Start Building</button><button class="btn btn-outline btn-sm" data-nav="talent">Explore Talent</button></div>
+    <div class="flex g2 mt4"><button class="btn btn-primary btn-sm" data-nav="login">Join the Waitlist</button><button class="btn btn-outline btn-sm" data-nav="how">How it works</button></div>
    </div>
    <div class="grid" style="grid-template-columns:1fr 1fr 1fr;gap:28px">
     ${cols.map(c=>`<div><div class="fw7 small mb3">${c[0]}</div><div style="display:flex;flex-direction:column;gap:11px">${c[1].map(it=>`<button class="fl" style="text-align:left" data-navx="${it[1]}">${it[0]}</button>`).join('')}</div></div>`).join('')}
@@ -688,16 +689,26 @@ function pageHome(){
  <section class="wrap" style="padding-top:44px;padding-bottom:8px">
   <div class="grid" id="herogrid" style="grid-template-columns:1fr;gap:40px;align-items:center">
    <div>
-    <div class="reveal flex ic g2"><span class="tag tag-accent">${ico('sparkles',13)} Build a brand, not a to-do list</span></div>
+    <div class="reveal flex ic g2"><span class="tag tag-accent">${ico('sparkles',13)} Launching soon · Join the waitlist</span></div>
     <h1 class="h1 reveal mt3">Build your idea<br>with the <span class="serif-accent" style="color:var(--accent)">right people.</span></h1>
     <p class="lead reveal mt3 maxw">Describe your idea. Launchory shows you the team you'll need — and the people ready to build it with you.</p>
     <div class="reveal flex g2 wr mt4">
-     <button class="btn btn-primary btn-lg" data-nav="build">Start Building ${ico('arrow',18)}</button>
-     <button class="btn btn-outline btn-lg" data-nav="talent">Explore Talent</button>
+     <button class="btn btn-primary btn-lg" data-nav="login">Join the Waitlist ${ico('arrow',18)}</button>
+     <button class="btn btn-outline btn-lg" data-nav="how">How it works</button>
     </div>
-    <button class="reveal link mt4" data-nav="explore" style="color:var(--charcoal)">Have a skill? Discover brands to help build ${ico('arrow',15)}</button>
+    <button class="reveal link mt4" data-nav="login" style="color:var(--charcoal)">Have a skill? Join as a creative ${ico('arrow',15)}</button>
    </div>
    <div class="reveal">${heroPreview()}</div>
+  </div>
+ </section>
+
+ <section class="wrap sec" id="story">
+  <div style="max-width:800px;margin:0 auto;text-align:center">
+   <div class="eyebrow reveal">Why Launchory</div>
+   <h2 class="h2 reveal mt2">Great brands are built by teams — not by one founder at 2am.</h2>
+   <p class="lead muted reveal mt3">You have the idea. Turning it into a real brand takes a designer, a marketer, a developer, someone to shoot the product, and more — and finding the right people is scattered, slow, and overwhelming. Launchory brings it all into one place: describe what you're building, and we show you the exact team you need and connect you with the people ready to build it with you.</p>
+   <p class="reveal mt3" style="font-weight:600;color:var(--accent)">From idea to launched brand — with the right people beside you.</p>
+   <div class="reveal mt4"><button class="btn btn-primary btn-md" data-nav="login">Join the Waitlist ${ico('arrow',16)}</button></div>
   </div>
  </section>
 
@@ -712,12 +723,12 @@ function pageHome(){
  </section>
 
  <section style="background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap sec">
-  <div class="flex ie jb wr g3 mb4"><div><div class="eyebrow reveal">Discover brands</div><h2 class="h2 reveal mt2">Brands looking for their team.</h2></div><button class="reveal link" data-nav="explore">See all ${ico('arrow',15)}</button></div>
+  <div class="flex ie jb wr g3 mb4"><div><div class="eyebrow reveal">A preview of what's coming</div><h2 class="h2 reveal mt2">Brands looking for their team.</h2></div><button class="reveal link" data-nav="explore">See all ${ico('arrow',15)}</button></div>
   <div class="hscroll">${BRANDS.slice(0,6).map(b=>`<div style="width:330px">${brandCard(b)}</div>`).join('')}</div>
  </div></section>
 
  <section class="wrap sec">
-  <div class="flex ie jb wr g3 mb4"><div><div class="eyebrow reveal">Meet the talent</div><h2 class="h2 reveal mt2">People ready to build with you.</h2></div><button class="reveal link" data-nav="talent">See all ${ico('arrow',15)}</button></div>
+  <div class="flex ie jb wr g3 mb4"><div><div class="eyebrow reveal">A preview of what's coming</div><h2 class="h2 reveal mt2">People ready to build with you.</h2></div><button class="reveal link" data-nav="talent">See all ${ico('arrow',15)}</button></div>
   <div class="hscroll">${CREATIVES.slice(0,6).map(c=>`<div style="width:280px">${talentCard(c)}</div>`).join('')}</div>
  </section>
 
@@ -727,7 +738,7 @@ function pageHome(){
   <div class="grid mt5" id="stepsgrid" style="grid-template-columns:1fr 1fr">
    ${STEPS.map((s,i)=>`<div class="reveal" style="border-top:2px solid rgba(255,255,255,.16);padding-top:16px"><div class="fw8" style="font-size:26px;color:rgba(255,255,255,.72)">0${i+1}</div><div class="h4 mt2" style="color:#fff">${s[0]}</div><p class="small mt1" style="color:rgba(255,255,255,.6)">${s[1]}</p></div>`).join('')}
   </div>
-  <div class="reveal flex g2 wr mt5"><button class="btn btn-accent btn-lg" data-nav="build">Start Building</button><button class="btn btn-lg" data-nav="explore" style="background:rgba(255,255,255,.12);color:#fff">Explore Brands</button></div>
+  <div class="reveal flex g2 wr mt5"><button class="btn btn-accent btn-lg" data-nav="login">Join the Waitlist</button><button class="btn btn-lg" data-nav="how" style="background:rgba(255,255,255,.12);color:#fff">How it works</button></div>
  </div></section>`;
 }
 function heroPreview(){
@@ -747,7 +758,7 @@ function heroPreview(){
     <button class="btn btn-soft btn-sm f1" id="heroAdd">${ico('plus',15)} Add role</button>
     <button class="btn btn-outline btn-sm f1" data-nav="talent">View matches</button>
    </div>
-   <button class="btn btn-primary btn-block btn-md mt2" data-nav="build">Build my team ${ico('arrow',16)}</button>
+   <button class="btn btn-primary btn-block btn-md mt2" data-nav="login">Join the Waitlist ${ico('arrow',16)}</button>
   </div>
  </div>`;
 }
@@ -1266,7 +1277,7 @@ function pageHow(){
  <section class="wrap" style="padding-top:36px;padding-bottom:24px">
   ${STEPS.map((s,i)=>`<div class="reveal card" style="overflow:hidden;margin-bottom:20px"><div class="grid" style="grid-template-columns:1fr;align-items:stretch" id="howrow${i}"><div class="pad" style="padding:44px;display:flex;flex-direction:column;justify-content:center"><div class="fw7" style="font-size:15px;letter-spacing:.04em;color:var(--accent)">0${i+1}</div><h2 class="h2 mt3" style="font-size:clamp(1.5rem,2.4vw,2rem)">${s[0]}</h2><p class="lead muted mt3">${s[1]}</p></div>${ph(600+i,{ratio:'16/10',tone:['fashion','beauty','food','music'][i],shift:-1})}</div></div>`).join('')}
  </section>
- <section class="wrap sec"><div class="card tc" style="padding:48px 24px;background:var(--ink);color:#fff;border:none"><h2 class="h2" style="color:#fff">Ready to build your idea?</h2><div class="flex g2 jc wr mt4"><button class="btn btn-accent btn-lg" data-nav="build">Start Building</button><button class="btn btn-lg" data-nav="explore" style="background:rgba(255,255,255,.14);color:#fff">Explore Brands</button></div></div></section>`;
+ <section class="wrap sec"><div class="card tc" style="padding:48px 24px;background:var(--ink);color:#fff;border:none"><h2 class="h2" style="color:#fff">Ready to build your idea?</h2><div class="flex g2 jc wr mt4"><button class="btn btn-accent btn-lg" data-nav="login">Join the Waitlist</button></div></div></section>`;
 }
 
 /* ===== LOGIN ===== */
