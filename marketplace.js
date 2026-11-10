@@ -1,7 +1,7 @@
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.49.4';
 const cfg=window.LAUNCHORY_CONFIG||{},db=cfg.supabaseUrl&&cfg.supabaseAnonKey?createClient(cfg.supabaseUrl,cfg.supabaseAnonKey):null;
 const $=id=>document.getElementById(id),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
-let user=null,profile=null,projects=[],proposals=[],creatives=[];
+let user=null,profile=null,projects=[],proposals=[],creatives=[],portfolioItems=[];
 const note=msg=>{const n=$('notice');n.textContent=msg;n.style.display='block';window.scrollTo({top:0,behavior:'smooth'});};
 const run=async p=>{const {data,error}=await p;if(error)throw error;return data;};
 async function call(path,body){const token=(await db.auth.getSession()).data.session?.access_token;const r=await fetch('/api/'+path,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+token},body:JSON.stringify(body||{})});const j=await r.json();if(!r.ok)throw Error(j.error||'Request failed');return j;}
@@ -13,7 +13,7 @@ else {db.auth.onAuthStateChange(()=>setTimeout(refresh,0));await refresh();}
 $('signup').onclick=async()=>{try{const full_name=$('fullname').value.trim(),role=$('role').value,email=$('email').value.trim(),password=$('password').value;if(full_name.length<2||password.length<8)throw Error('Enter your name and a password of 8+ characters.');const {data,error}=await db.auth.signUp({email,password,options:{data:{full_name,role}}});if(error)throw error;if(data.session)await refresh();else note('Please confirm your email, then sign in.');}catch(e){note(e.message);}};
 $('login').onclick=async()=>{try{await run(db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value}));await refresh();}catch(e){note(e.message);}};
 $('signout').onclick=async e=>{e.preventDefault();await db.auth.signOut();await refresh();};
-async function load(){projects=await run(db.from('projects').select('*,profiles!projects_founder_id_fkey(full_name)').order('created_at',{ascending:false}).limit(100));creatives=await run(db.from('profiles').select('id,full_name,headline,specialty,bio,portfolio_url,location,skills,availability,starting_rate_cents').eq('role','creative').order('created_at',{ascending:false}).limit(100));drawProjects();drawCreatives();drawOwn();await drawInbox();await drawInvitations();drawProfile();await drawPayments();drawStats();}
+async function load(){projects=await run(db.from('projects').select('*,profiles!projects_founder_id_fkey(full_name)').order('created_at',{ascending:false}).limit(100));creatives=await run(db.from('profiles').select('id,full_name,headline,specialty,bio,portfolio_url,location,skills,availability,starting_rate_cents').eq('role','creative').order('created_at',{ascending:false}).limit(100));portfolioItems=await run(db.from('portfolio_items').select('id,creative_id,title,description,cover_image_url,project_url,created_at').order('created_at',{ascending:false}).limit(250));drawProjects();drawCreatives();drawOwn();await drawInbox();await drawInvitations();drawProfile();drawPortfolioManager();await drawPayments();drawStats();}
 
 function drawProjects(){
  const open=projects.filter(p=>p.status==='open');
@@ -89,6 +89,7 @@ function showCreative(id){
  <div class="modal-meta"><span class="tag">${esc(p.specialty||'Creative')}</span><span class="tag">${esc(p.availability||'Open to projects')}</span>${p.starting_rate_cents!=null?`<span class="tag">Starting at ${money(p.starting_rate_cents)}</span>`:''}</div>
  <hr class="section-rule"><div class="small-label">ABOUT</div><p class="modal-bio">${esc(p.bio||'This creative has not added an introduction yet.')}</p>
  <div class="small-label">SERVICES & SKILLS</div><div class="meta">${(p.skills||[]).length?(p.skills||[]).map(x=>`<span class="tag">${esc(x)}</span>`).join(''):'<span class="muted mini">Not specified yet</span>'}</div>
+ <hr class="section-rule"><div class="small-label">SELECTED WORK</div><div class="portfolio-grid">${portfolioMarkup(p.id)}</div>
  <div class="modal-cta">${safeLink(p.portfolio_url)?`<a class="button" href="${esc(p.portfolio_url)}" target="_blank" rel="noopener noreferrer">View portfolio ↗</a>`:''}
  ${profile?.role==='founder'?'<button id="invite-open">Invite to a project</button>':''}</div>
  ${profile?.role==='founder'&&!canInvite?'<p class="muted mini">Post a project first to invite this creative, so they can review the scope and send you a proposal.</p>':''}
@@ -134,3 +135,32 @@ for(const el of $('profile-form').querySelectorAll('input,select,textarea'))el.a
 $('nav-explore').onclick=e=>{if(user){e.preventDefault();tab('explore');}};
 $('nav-creatives').onclick=e=>{if(user){e.preventDefault();tab('creatives');}};
 $('nav-dashboard').onclick=e=>{if(user){e.preventDefault();tab('projects');}};
+
+function portfolioMarkup(creativeId){
+ const items=portfolioItems.filter(p=>p.creative_id===creativeId);
+ if(!items.length)return '<p class="muted mini">This creative has not added any portfolio projects yet.</p>';
+ return items.map(item=>`<article class="portfolio-piece">${safeLink(item.cover_image_url)?`<img alt="" src="${esc(item.cover_image_url)}" loading="lazy" referrerpolicy="no-referrer">`:'<div class="portfolio-placeholder">L.</div>'}
+ <div class="portfolio-piece-content"><h3>${esc(item.title)}</h3><p class="mini muted">${esc(item.description||'Portfolio project')}</p>
+ ${safeLink(item.project_url)?`<a class="textlink" href="${esc(item.project_url)}" target="_blank" rel="noopener noreferrer">View case study ↗</a>`:''}</div></article>`).join('');
+}
+function drawPortfolioManager(){
+ const el=$('portfolio-manager');
+ if(!el)return;
+ el.classList.toggle('hidden',profile?.role!=='creative');
+ if(profile?.role!=='creative')return;
+ const own=portfolioItems.filter(p=>p.creative_id===user.id);
+ $('my-portfolio-items').innerHTML=own.length?own.map(i=>`<div class="portfolio-manage-row"><div><strong>${esc(i.title)}</strong><p class="mini muted">${esc(i.description||'Portfolio work')}</p></div><button class="secondary small-cta" data-delete-portfolio="${i.id}">Remove</button></div>`).join(''):'<p class="muted mini">Add your first portfolio project below.</p>';
+ document.querySelectorAll('[data-delete-portfolio]').forEach(b=>b.onclick=async()=>{
+  if(!confirm('Remove this portfolio project?'))return;
+  try{await run(db.from('portfolio_items').delete().eq('id',b.dataset.deletePortfolio).eq('creative_id',user.id));await load();note('Portfolio project removed.');}catch(e){note(e.message);}
+ });
+}
+$('portfolio-form').onsubmit=async e=>{
+ e.preventDefault();const fd=new FormData(e.target);
+ const item={creative_id:user.id,title:String(fd.get('title')||'').trim(),description:String(fd.get('description')||'').trim(),cover_image_url:String(fd.get('cover_image_url')||'').trim()||null,project_url:String(fd.get('project_url')||'').trim()||null};
+ try{
+  if(item.title.length<3)throw Error('Enter a project name.');
+  for(const k of ['cover_image_url','project_url'])if(item[k]&&!safeLink(item[k]))throw Error('Use a valid HTTPS or HTTP link.');
+  await run(db.from('portfolio_items').insert(item));e.target.reset();await load();tab('profile');note('Portfolio project published on your profile.');
+ }catch(err){note(err.message);}
+};
