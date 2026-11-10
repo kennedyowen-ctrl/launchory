@@ -13,3 +13,12 @@ main{max-width:1230px!important;padding-top:38px!important}.topbar{display:flex;
 .profile-form-shell{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:18px;align-items:start}.auth-options{display:flex;gap:10px;flex-wrap:wrap}.small-cta{padding:10px 16px!important;font-size:13px!important}
 @media(max-width:950px){.profile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#tab-projects .split,.profile-form-shell{grid-template-columns:1fr}.hero-strip{grid-template-columns:1fr}.hero-strip button{justify-self:start}}
 @media(max-width:650px){nav a[href="/"]{display:none}.topbar{display:block}.top-actions{margin-top:15px}.profile-grid,.statbar,.form-row{grid-template-columns:1fr}.hero-strip{padding:22px}.dialog-panel{padding:27px 19px}.filterbar{grid-template-columns:1fr!important}.inbox-card form{display:block}.inbox-card form button{margin-top:7px}.talent-card{min-height:unset}#app .lead{font-size:15px!important}}
+
+.portfolio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:14px}
+.portfolio-piece{border:1px solid #e4e8e1;border-radius:13px;overflow:hidden;background:#fafbf9}
+.portfolio-piece img{width:100%;height:170px;object-fit:cover;display:block}
+.portfolio-placeholder{height:120px;background:#e7ebe3;display:grid;place-items:center;color:#718a77;font:normal 38px Georgia,serif}
+.portfolio-piece-content{padding:14px}.portfolio-piece-content h3{font-size:16px!important;margin:0 0 7px}.portfolio-piece-content p{line-height:1.6}
+.portfolio-manage-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid #e6ebe4}.portfolio-manage-row p{margin:4px 0 0}
+#portfolio-manager{margin-top:20px}.inbox-card .message{white-space:pre-wrap}
+@media(max-width:580px){.portfolio-grid{grid-template-columns:1fr}}
