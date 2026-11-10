@@ -1,0 +1,13 @@
+{
+  "name": "launchory-marketplace",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check marketplace.js && node --check api/checkout.js && node --check api/connect.js && node --check api/webhook.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.49.4",
+    "stripe": "17.7.0"
+  }
+}
