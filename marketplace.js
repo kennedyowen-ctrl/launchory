@@ -1,7 +1,7 @@
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.49.4';
 const cfg=window.LAUNCHORY_CONFIG||{},db=cfg.supabaseUrl&&cfg.supabaseAnonKey?createClient(cfg.supabaseUrl,cfg.supabaseAnonKey):null;
 const $=id=>document.getElementById(id),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
-let user=null,profile=null,projects=[],proposals=[],creatives=[],portfolioItems=[],realtimeChannel=null,paymentsConfigured=false;
+let user=null,profile=null,projects=[],proposals=[],creatives=[],portfolioItems=[],reviews=[],realtimeChannel=null,paymentsConfigured=false;
 const note=msg=>{const n=$('notice');n.textContent=msg;n.style.display='block';window.scrollTo({top:0,behavior:'smooth'});};
 const run=async p=>{const {data,error}=await p;if(error)throw error;return data;};
 async function call(path,body){const token=(await db.auth.getSession()).data.session?.access_token;const r=await fetch('/api/'+path,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+token},body:JSON.stringify(body||{})});const j=await r.json();if(!r.ok)throw Error(j.error||'Request failed');return j;}
@@ -14,7 +14,7 @@ $('signup').onclick=async()=>{try{const full_name=$('fullname').value.trim(),rol
 $('login').onclick=async()=>{try{await run(db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value}));await refresh();}catch(e){note(e.message);}};
 $('signout').onclick=async e=>{e.preventDefault();await db.auth.signOut();await refresh();};
 $('forgot-password').onclick=async()=>{const email=$('email').value.trim();if(!email){note('Enter your email address above to reset your password.');return;}try{await run(db.auth.resetPasswordForEmail(email,{redirectTo:location.origin+'/marketplace.html'}));note('If an account exists with that email, check your inbox for a reset link.');}catch(e){note('Unable to send a reset email right now. Please try again later.');}};
-async function load(){projects=await run(db.from('projects').select('*,profiles!projects_founder_id_fkey(full_name)').order('created_at',{ascending:false}).limit(100));creatives=await run(db.from('profiles').select('id,full_name,headline,specialty,bio,portfolio_url,location,skills,availability,starting_rate_cents').eq('role','creative').order('created_at',{ascending:false}).limit(100));portfolioItems=await run(db.from('portfolio_items').select('id,creative_id,title,description,cover_image_url,project_url,created_at').order('created_at',{ascending:false}).limit(250));drawProjects();drawCreatives();drawOwn();await drawInbox();await drawInvitations();drawProfile();drawPortfolioManager();await drawPayments();drawStats();}
+async function load(){projects=await run(db.from('projects').select('*,profiles!projects_founder_id_fkey(full_name)').order('created_at',{ascending:false}).limit(100));creatives=await run(db.from('profiles').select('id,full_name,headline,specialty,bio,portfolio_url,location,skills,availability,starting_rate_cents').eq('role','creative').order('created_at',{ascending:false}).limit(100));portfolioItems=await run(db.from('portfolio_items').select('id,creative_id,title,description,cover_image_url,project_url,created_at').order('created_at',{ascending:false}).limit(250));reviews=await run(db.from('reviews').select('id,proposal_id,founder_id,creative_id,rating,feedback,created_at').order('created_at',{ascending:false}).limit(250));drawProjects();drawCreatives();drawOwn();await drawInbox();await drawInvitations();drawProfile();drawPortfolioManager();await drawPayments();drawStats();}
 
 function drawProjects(){
  const open=projects.filter(p=>p.status==='open');
@@ -44,9 +44,11 @@ $('creative-search').oninput=drawCreatives;$('creative-category').onchange=drawC
 function drawOwn(){
  const founder=profile.role==='founder',my=projects.filter(p=>p.founder_id===user.id);
  $('post-panel').classList.toggle('hidden',!founder);
- $('my-project-feed').innerHTML=founder?my.map(p=>`<article class="card"><span class="tag">${esc(p.status)}</span><h3>${esc(p.title)}</h3><p class="muted mini">${esc(p.category)} · $${(p.budget_cents/100).toLocaleString()}</p><p class="muted">${esc((p.description||'').slice(0,155))}</p><button class="secondary small-cta" data-project-detail="${p.id}">View details</button></article>`).join('')||emptyMarkup('Start with your first project','Tell creatives what you are creating, and start getting proposals.'):
+ $('my-project-feed').innerHTML=founder?my.map(p=>`<article class="card"><span class="tag">${esc(p.status)}</span><h3>${esc(p.title)}</h3><p class="muted mini">${esc(p.category)} · $${(p.budget_cents/100).toLocaleString()}</p><p class="muted">${esc((p.description||'').slice(0,155))}</p><button class="secondary small-cta" data-project-detail="${p.id}">View details</button>${p.status==='open'?` <button class="secondary small-cta" data-project-edit="${p.id}">Edit brief</button> <button class="secondary small-cta" data-project-cancel="${p.id}">Cancel</button>`:''} </article>`).join('')||emptyMarkup('Start with your first project','Tell creatives what you are creating, and start getting proposals.'):
  '<div class="card"><h3>Discover creative opportunities</h3><p class="muted">Your proposals and conversations live in Connections. Find your next project from the opportunities board.</p><button id="see-open-projects">Explore open projects</button></div>';
  document.querySelectorAll('[data-project-detail]').forEach(b=>b.onclick=()=>showProject(b.dataset.projectDetail));
+ document.querySelectorAll('[data-project-edit]').forEach(b=>b.onclick=()=>editProject(b.dataset.projectEdit));
+ document.querySelectorAll('[data-project-cancel]').forEach(b=>b.onclick=async()=>{if(!confirm('Cancel this project? It will no longer appear in open opportunities.'))return;try{await run(db.from('projects').update({status:'cancelled'}).eq('id',b.dataset.projectCancel).eq('founder_id',user.id).eq('status','open'));await load();note('Project cancelled.');}catch(e){note(e.message);}});
  if(!founder)$('see-open-projects').onclick=()=>tab('explore');
 }
 
@@ -90,7 +92,7 @@ function showCreative(id){
  <div class="modal-meta"><span class="tag">${esc(p.specialty||'Creative')}</span><span class="tag">${esc(p.availability||'Open to projects')}</span>${p.starting_rate_cents!=null?`<span class="tag">Starting at ${money(p.starting_rate_cents)}</span>`:''}</div>
  <hr class="section-rule"><div class="small-label">ABOUT</div><p class="modal-bio">${esc(p.bio||'This creative has not added an introduction yet.')}</p>
  <div class="small-label">SERVICES & SKILLS</div><div class="meta">${(p.skills||[]).length?(p.skills||[]).map(x=>`<span class="tag">${esc(x)}</span>`).join(''):'<span class="muted mini">Not specified yet</span>'}</div>
- <hr class="section-rule"><div class="small-label">SELECTED WORK</div><div class="portfolio-grid">${portfolioMarkup(p.id)}</div>
+ <hr class="section-rule"><div class="small-label">SELECTED WORK</div><div class="portfolio-grid">${portfolioMarkup(p.id)}</div><hr class="section-rule"><div class="small-label">FEEDBACK FROM COMPLETED PROJECTS</div><div>${reviewsMarkup(p.id)}</div>
  <div class="modal-cta">${safeLink(p.portfolio_url)?`<a class="button" href="${esc(p.portfolio_url)}" target="_blank" rel="noopener noreferrer">View portfolio ↗</a>`:''}
  ${profile?.role==='founder'?'<button id="invite-open">Invite to a project</button>':''}</div>
  ${profile?.role==='founder'&&!canInvite?'<p class="muted mini">Post a project first to invite this creative, so they can review the scope and send you a proposal.</p>':''}
@@ -180,4 +182,35 @@ function connectRealtime(){
 function openPasswordReset(){
  openDialog('<div class="eyebrow">ACCOUNT SECURITY</div><h2>Choose a new password.</h2><p class="muted">Use at least 8 characters and keep your password unique.</p><form id="new-password-form"><label>New password<input name="password" type="password" minlength="8" required autocomplete="new-password"></label><button>Update password</button></form>');
  $('new-password-form').onsubmit=async e=>{e.preventDefault();const value=e.target.elements.password.value;if(value.length<8){note('Please use at least 8 characters.');return;}try{await run(db.auth.updateUser({password:value}));closeDialog();note('Your password has been updated.');}catch(err){note(err.message);}};
+}
+
+function editProject(id){
+ const p=projects.find(x=>x.id===id&&x.founder_id===user.id&&x.status==='open');if(!p)return;
+ const cats=['Branding & Graphic Design','Fashion Design','Product Development','Manufacturing & Sourcing','Photography','Content & Marketing','Web & E-commerce'];
+ openDialog(`<div class="eyebrow">UPDATE YOUR PROJECT</div><h2>Edit your brief.</h2><p class="muted">Keep deliverables and expectations current before you hire someone.</p><form id="project-edit-form">
+ <label>Project title<input name="title" maxlength="120" minlength="3" required value="${esc(p.title)}"></label>
+ <label>Category<select name="category">${cats.map(c=>`<option value="${esc(c)}" ${c===p.category?'selected':''}>${esc(c)}</option>`).join('')}</select></label>
+ <label>Budget in USD<input name="budget" type="number" min="1" step="1" value="${p.budget_cents/100}" required></label>
+ <label>Scope & deliverables<textarea name="description" required minlength="20" maxlength="3000">${esc(p.description)}</textarea></label>
+ <button>Save project</button></form>`);
+ $('project-edit-form').onsubmit=async e=>{e.preventDefault();const d=new FormData(e.target),budget_cents=Math.round(Number(d.get('budget'))*100);
+ try{if(!Number.isSafeInteger(budget_cents)||budget_cents<100)throw Error('Enter a valid budget.');
+ await run(db.from('projects').update({title:String(d.get('title')).trim(),category:String(d.get('category')),description:String(d.get('description')).trim(),budget_cents}).eq('id',id).eq('founder_id',user.id).eq('status','open'));closeDialog();await load();tab('projects');note('Project updated.');}catch(err){note(err.message);}};
+}
+function reviewsMarkup(creativeId){
+ const items=reviews.filter(x=>x.creative_id===creativeId);
+ if(!items.length)return '<p class="muted mini">No completed-project reviews yet.</p>';
+ const avg=(items.reduce((sum,r)=>sum+r.rating,0)/items.length).toFixed(1);
+ return `<p><strong>★ ${avg} / 5</strong> <span class="muted mini">(${items.length} verified project${items.length===1?'':'s'})</span></p>`+
+ items.slice(0,6).map(r=>`<div class="review-piece"><strong>${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</strong><p class="mini muted">${esc(r.feedback)}</p><span class="mini muted">${new Date(r.created_at).toLocaleDateString()}</span></div>`).join('');
+}
+function openReviewForm(proposalId){
+ const p=proposals.find(x=>x.id===proposalId);if(!p||p.projects.founder_id!==user.id)return;
+ openDialog(`<div class="eyebrow">AFTER THE PROJECT</div><h2>Share your experience.</h2><p class="muted">Reviews are only available after a completed, paid project. Be fair and specific.</p>
+ <form id="review-form"><label>Rating<select name="rating"><option value="5">5 stars — Excellent</option><option value="4">4 stars — Great</option><option value="3">3 stars — Good</option><option value="2">2 stars — Below expectations</option><option value="1">1 star — Poor</option></select></label>
+ <label>What was working together like?<textarea required minlength="15" maxlength="1500" name="feedback" placeholder="Communication, quality, and experience"></textarea></label>
+ <button>Publish verified review</button></form>`);
+ $('review-form').onsubmit=async e=>{e.preventDefault();const d=new FormData(e.target);try{
+ await run(db.from('reviews').insert({proposal_id:proposalId,founder_id:user.id,creative_id:p.creative_id,rating:Number(d.get('rating')),feedback:String(d.get('feedback')).trim()}));
+ closeDialog();await load();tab('inbox');note('Thanks for reviewing this creative!');}catch(err){note(err.message);}};
 }
