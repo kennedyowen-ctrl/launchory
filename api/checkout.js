@@ -17,7 +17,7 @@ export default async function handler(req,res){
   if(existing)return respond(res,409,{error:'Checkout is already started. Contact support to retry an expired session.'});
   const fee=Math.round(p.amount_cents*0.07);
   const session=await client.checkout.sessions.create({
-   mode:'payment',customer_email:user.email,client_reference_id:id,
+   mode:'payment',customer_email:user.email,client_reference_id:id,invoice_creation:{enabled:true,invoice_data:{description:'Launchory creative services project'}},
    line_items:[{price_data:{currency:'usd',unit_amount:p.amount_cents,product_data:{name:'Launchory · '+project.title.slice(0,100)}},quantity:1}],
    payment_intent_data:{transfer_group:'launchory_'+id,metadata:{proposal_id:id}},
    success_url:origin()+'/marketplace.html?payment=success#payments',cancel_url:origin()+'/marketplace.html?payment=cancelled#inbox',
