@@ -9,10 +9,11 @@ function tab(name){for(const s of document.querySelectorAll('[id^="tab-"]'))s.cl
 for(const b of document.querySelectorAll('[data-tab]'))b.onclick=()=>tab(b.dataset.tab);
 async function refresh(){if(!db)return;try{user=(await db.auth.getUser()).data.user;$('auth-panel').style.display=user?'none':'block';$('app').style.display=user?'block':'none';$('signout').style.display=user?'inline':'none';if(!user){if(realtimeChannel){db.removeChannel(realtimeChannel);realtimeChannel=null;}return;}profile=await run(db.from('profiles').select('*').eq('id',user.id).maybeSingle());if(!profile){note('Your account profile is being prepared. Please try signing out and back in.');return;}$('greeting').textContent='Welcome, '+(profile.full_name.split(' ')[0]||'founder')+'.';await load();connectRealtime();const h=location.hash.slice(1);if(['explore','creatives','projects','inbox','profile','payments'].includes(h))tab(h);}catch(e){note(e.message);}}
 if(!db){$('setup').classList.remove('hidden');$('auth-panel').style.display='none';}
-else {db.auth.onAuthStateChange(()=>setTimeout(refresh,0));await refresh();}
-$('signup').onclick=async()=>{try{const full_name=$('fullname').value.trim(),role=$('role').value,email=$('email').value.trim(),password=$('password').value;if(full_name.length<2||password.length<8)throw Error('Enter your name and a password of 8+ characters.');const {data,error}=await db.auth.signUp({email,password,options:{data:{full_name,role}}});if(error)throw error;if(data.session)await refresh();else note('Please confirm your email, then sign in.');}catch(e){note(e.message);}};
+else {db.auth.onAuthStateChange(event=>{setTimeout(refresh,0);if(event==='PASSWORD_RECOVERY')setTimeout(openPasswordReset,400);});await refresh();}
+$('signup').onclick=async()=>{try{const full_name=$('fullname').value.trim(),role=$('role').value,email=$('email').value.trim(),password=$('password').value;if(full_name.length<2||password.length<8)throw Error('Enter your name and a password of 8+ characters.');const {data,error}=await db.auth.signUp({email,password,options:{data:{full_name,role},emailRedirectTo:location.origin+'/marketplace.html'}});if(error)throw error;if(data.session)await refresh();else note('Please confirm your email, then sign in.');}catch(e){note(e.message);}};
 $('login').onclick=async()=>{try{await run(db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value}));await refresh();}catch(e){note(e.message);}};
 $('signout').onclick=async e=>{e.preventDefault();await db.auth.signOut();await refresh();};
+$('forgot-password').onclick=async()=>{const email=$('email').value.trim();if(!email){note('Enter your email address above to reset your password.');return;}try{await run(db.auth.resetPasswordForEmail(email,{redirectTo:location.origin+'/marketplace.html'}));note('If an account exists with that email, check your inbox for a reset link.');}catch(e){note('Unable to send a reset email right now. Please try again later.');}};
 async function load(){projects=await run(db.from('projects').select('*,profiles!projects_founder_id_fkey(full_name)').order('created_at',{ascending:false}).limit(100));creatives=await run(db.from('profiles').select('id,full_name,headline,specialty,bio,portfolio_url,location,skills,availability,starting_rate_cents').eq('role','creative').order('created_at',{ascending:false}).limit(100));portfolioItems=await run(db.from('portfolio_items').select('id,creative_id,title,description,cover_image_url,project_url,created_at').order('created_at',{ascending:false}).limit(250));drawProjects();drawCreatives();drawOwn();await drawInbox();await drawInvitations();drawProfile();drawPortfolioManager();await drawPayments();drawStats();}
 
 function drawProjects(){
@@ -174,4 +175,9 @@ function connectRealtime(){
  .on('postgres_changes',{event:'UPDATE',schema:'public',table:'proposals'},changed)
  .on('postgres_changes',{event:'INSERT',schema:'public',table:'project_invitations'},changed)
  .subscribe();
+}
+
+function openPasswordReset(){
+ openDialog('<div class="eyebrow">ACCOUNT SECURITY</div><h2>Choose a new password.</h2><p class="muted">Use at least 8 characters and keep your password unique.</p><form id="new-password-form"><label>New password<input name="password" type="password" minlength="8" required autocomplete="new-password"></label><button>Update password</button></form>');
+ $('new-password-form').onsubmit=async e=>{e.preventDefault();const value=e.target.elements.password.value;if(value.length<8){note('Please use at least 8 characters.');return;}try{await run(db.auth.updateUser({password:value}));closeDialog();note('Your password has been updated.');}catch(err){note(err.message);}};
 }
