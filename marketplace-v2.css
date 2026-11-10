@@ -22,3 +22,7 @@ main{max-width:1230px!important;padding-top:38px!important}.topbar{display:flex;
 .portfolio-manage-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid #e6ebe4}.portfolio-manage-row p{margin:4px 0 0}
 #portfolio-manager{margin-top:20px}.inbox-card .message{white-space:pre-wrap}
 @media(max-width:580px){.portfolio-grid{grid-template-columns:1fr}}
+
+@media(min-width:951px){#creative-feed.profile-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(min-width:651px) and (max-width:950px){#creative-feed.profile-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:650px){#creative-feed.profile-grid{grid-template-columns:1fr!important}}
